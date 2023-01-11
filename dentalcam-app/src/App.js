@@ -9,6 +9,7 @@ import Adduser from './Component/Adduser';
 import Profile from './Component/Profile';
 import Data from './Component/Data';
 import Contact from './Component/Contact';
+import Privacy from './Component/Privacy';
 
 
 const App = () => {
@@ -24,8 +25,9 @@ const App = () => {
             <Route path='/contactus' element={<Contactus />} />
             <Route path='/profile' element={<Profile />} />
           </Route>
-            <Route path='/TermsAndConditions' element={<Term />} />
             <Route path='/contact-us' element={<Contact />} />
+            <Route path='/TermsAndConditions' element={<Term />} />
+            <Route path='/Policy' element={<Privacy />} />
         </Routes>
       </BrowserRouter>
 

@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
 
 
-const Contactstyled = styled.div({
+const Contactstyled = styled.div`${{
     '& .main': {
         padding: '0px 14px'
     },
     '& .mainbo': {
-        // height:'336px',
-        // width:'400px',
         margin: '0 132px',
     },
     '& .mainbox': {
@@ -42,6 +40,26 @@ const Contactstyled = styled.div({
         alignItems: 'center',
         cursor:'pointer'
     }
-})
+}}
+@media (max-width:1025px) and (min-width:770px){
+    .main{
+        padding:0px
+    }
+    .mainbo{
+        margin : 0px 50px 
+    }
+}
+@media (max-width:769px) and (min-width:480px){
+    .main{
+        padding:0px
+    }
+    .mainbo{
+        margin : 0px 60px;
+        padding:0px 20px 
+    }
+}
+
+
+`
 
 export default Contactstyled

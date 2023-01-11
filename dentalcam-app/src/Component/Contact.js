@@ -24,15 +24,15 @@ function Contact() {
                                 <Typography variant='h1' className='createcliniclogo'>Contact Us</Typography>
                                 <Box sx={{ marginTop: '15px' }}>
                                     <form autoComplete='off'>
-                                        <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                                        <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 12, sm: 12, md: 12 }}>
                                             <Grid item xs={6} >
-                                                <TextField sx={{ width: '100%', }} variant='outlined' label='First Name' />
+                                                <TextField sx={{ width: '100%',}} variant='outlined' label='First Name' />
                                             </Grid>
                                             <Grid item xs={6}>
-                                                <TextField sx={{ width: '100%' }} variant='outlined' label='Last Name' />
+                                                <TextField sx={{ width: '100%', }} variant='outlined' label='Last Name' />
                                             </Grid>
                                             <Grid item xs={12}>
-                                                <TextField sx={{ width: '100%' }} variant='outlined' label='Email' />
+                                                <TextField sx={{ width: '100%' }} variant='outlined' label='Email'/>
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <TextField

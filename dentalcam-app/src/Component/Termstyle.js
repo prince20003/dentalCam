@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 const Termstyle = styled.div`${{
    '& .mterm':{
-    padding: '30px 50px',
+    padding: '35px 50px',
    },
    '& .maint':{
      display:'flex',
@@ -11,12 +11,21 @@ const Termstyle = styled.div`${{
    '& .policy':{
      paddingBottom:'20px'
    },
-   '& .heading':{
-    padding: '0',
-    margin:' 0 0 10px 0',
+   '& .policy li,h1,h3,li':{
+    padding: '0px',
+    margin:' 0 0 18px 0',
     boxSizing: 'borderBox',
     fontFamily:'Public Sans,sans-serif'
    },
+   '& a':{
+    marginRight:'20px'
+   },
+   '& p':{
+    lineHeight:'1.5'
+   },
+   '& ul, ol':{
+    padding:'0px'
+   }
 
 }}`
 
