@@ -16,7 +16,7 @@ function Foot() {
             <Typography variant='span' className='footerline'>|</Typography>
             <a href="/TermsAndCondition" target="_blank" rel="noreferrer">Terms and Condition</a>
             <Typography variant='span' className='footerline'>|</Typography>
-            <a href="https://dentalcam.app/Policy/" target="_blank" rel="noreferrer">Privacy Policy</a>
+            <a href="/Policy/" target="_blank" rel="noreferrer">Privacy Policy</a>
           </Typography>
       </Paper>
     </Fo>

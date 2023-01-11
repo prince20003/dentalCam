@@ -9,6 +9,7 @@ import Cont from './component/Contact/Cont';
 import Profile from './component/Profie/Profile';
 import Create from './component/Create/Create';
 import TermsAndCondiction from './component/TermsAndCondiction/TermsAndCondiction';
+import Privacy from './component/TermsAndCondiction/Privacy';
 
 function App() {
   return (
@@ -27,11 +28,9 @@ function App() {
         </Route>
         <Route path="/Contact" element={<Cont />} />
         <Route path="/TermsAndCondition" element={<TermsAndCondiction />} />
+        <Route path="/Policy" element={<Privacy />} />
 
-        {/* <Route  path="/problem" element={<MainPro />} />
-        <Route path="/contactus" element={<MainCon />} />
-        <Route path="/contact" element={<Cont />} />
-        <Route path="/profile" element={<MainProfile />} /> */}
+       
       </Routes>
     </BrowserRouter>
   );
