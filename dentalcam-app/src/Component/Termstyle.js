@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const Termstyle = styled.div({
+const Termstyle = styled.div`${{
    '& .mterm':{
     padding: '30px 50px',
    },
@@ -18,6 +18,6 @@ const Termstyle = styled.div({
     fontFamily:'Public Sans,sans-serif'
    },
 
-})
+}}`
 
 export default Termstyle

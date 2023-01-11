@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import Termstyle from './Termstyle'
 
 function Term() {
@@ -11,7 +11,6 @@ function Term() {
                         <Box className='policy'>
                             <h1 className='heading'>TERMS AND CONDITIONS</h1>
                             <p className='heading'>This Agreement was last revised on September 06th, 2022.</p>
-                            
                         </Box>
                     </Box>
                 </Box>

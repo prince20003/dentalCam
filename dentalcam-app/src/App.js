@@ -8,6 +8,7 @@ import Contactus from './Component/Contactus';
 import Adduser from './Component/Adduser';
 import Profile from './Component/Profile';
 import Data from './Component/Data';
+import Contact from './Component/Contact';
 
 
 const App = () => {
@@ -22,14 +23,9 @@ const App = () => {
             <Route path='/problem' element={<Problem />} />
             <Route path='/contactus' element={<Contactus />} />
             <Route path='/profile' element={<Profile />} />
-            <Route path='/TermsAndConditions' element={<Term />} />
-            {/* <Route path='/create' element={<CreateUserPage />} />
-            <Route path='/problem' element={<ProblemPage />} />
-            <Route path='/contactus' element={<ContactPage />} />
-            <Route path='/contact-us' element={<Contact />} />
-            <Route path='/profile' element={<ProfilePage />} />
-            <Route path='/TermsAndConditions' element={<Term />} /> */}
           </Route>
+            <Route path='/TermsAndConditions' element={<Term />} />
+            <Route path='/contact-us' element={<Contact />} />
         </Routes>
       </BrowserRouter>
 
