@@ -1,36 +1,5 @@
 import styled from "@emotion/styled";
 
-// const Userstyle = styled.div({
-// '& .main':{
-//     padding:'122px 14px'  },
-//       '& .mainbo':{
-//         // height:'336px',
-//         // width:'400px',
-//         margin:'0 122px',
-//         display:'flex'
-//       },
-//       '& .back':{
-//        paddingTop:'6px',
-//        color:'#0B3379;'
-//       },
-//       '& .mainbox':{
-//         padding:'0 18px',
-//       },
-//       '& .had':{
-//         display:'flex',
-//         alignItems:'center'
-//       },
-//       '& .createcliniclogo':{
-//         fontFamily:'Public sans,sans-serif',
-//         fontSize:'32px',
-//         fontWeight:'700'
-//       },
-
-// })
-
-
-
-
 const Userstyle = styled.div`${{
   '& .main': {
     padding: '122px 14px'
