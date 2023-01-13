@@ -1,6 +1,5 @@
-import { Button, Paper, Typography } from '@mui/material'
+import {  Paper, Typography } from '@mui/material'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Fo from './Footer'
 
 
@@ -9,7 +8,7 @@ function Foot() {
   return (
     <Fo>
       <Paper elevation={3} className='main'>
-            <Typography variant='body1' className='a'>Copyright © 2022 <a href='https://dentalcam.app/login' className='delink'>  DentalCam</a></Typography>
+            <Typography variant='body1' className='a'>Copyright © 2022 <a href='/' className='delink'>  DentalCam</a></Typography>
           
             <Typography  variant='p' sx={{paddingRight:'30px'}}><a href='./Contact' target="_blank" rel="noreferrer">Contact Us</a>
 

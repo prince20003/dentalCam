@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonIcon from '@mui/icons-material/Person';
 import { Button } from '@mui/material';
 import MenuLang from './MenuLang';
+import { Link, NavLink } from 'react-router-dom';
 function MenubarLogout() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -84,12 +85,14 @@ function MenubarLogout() {
         
         <Typography sx={{margin:'12px 0',padding:'0 20px', fontSize: '16px', fontFamily: 'Public Sans,sans-serif', fontWeight: '600'}}>Admin Admin</Typography>
         <Divider sx={{margin:'8px 0'}}/>
-        <MenuItem sx={{ fontSize: '14px', fontFamily: 'Public Sans,sans-serif', fontWeight: '500',padding:'8px 20px'}}>
+        <NavLink to='/profile' style={{color:'black',textDecoration:'none'}}>
+        <MenuItem  sx={{ fontSize: '14px', fontFamily: 'Public Sans,sans-serif', fontWeight: '500',padding:'8px 20px'}}>
           <ListItemIcon>
             <PersonIcon fontSize="small" sx={{color:'black'}}/>
           </ListItemIcon>
           Profile
           </MenuItem>
+        </NavLink>
        <Box sx={{padding:'12px 16px 16px    '}}>
        <Button variant="outlined" sx={{color:'#0000EE',border: '1px solid rgba(145, 158, 171, 0.32)',borderRadius:'8px',textTransform:'capitalize', fontSize: '14px', fontFamily: 'Public Sans,sans-serif', fontWeight: '700',width:'186px'}}>Logout</Button>
        </Box>

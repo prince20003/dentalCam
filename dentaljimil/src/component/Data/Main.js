@@ -43,7 +43,7 @@ function Main(props) {
           <img className='Menulogo' alt='' src='https://dentalcam.app/static/logo.png' />
           <h2 style={{ textAlign: 'center', margin: '0 0' }}><span style={{ fontFamily: 'Public Sans,sans-serif', background: 'linear-gradient(90deg, rgb(171, 48, 177) 0%, rgb(91, 114, 180) 70%)', WebkitBackgroundClip: 'text', color: 'transparent', fontSize: '18.6px' }}>DentalCam</span></h2>
           <NavLink to='/profile'className='adminbox'>
-            <Typography sx={{ fontSize: '14px', fontFamily: 'Public Sans,sans-serif', fontWeight: '600' }}>Admin Admin</Typography>
+            <Typography sx={{ fontSize: '14px', fontFamily: 'Public Sans,sans-serif',width:'100px', fontWeight: '600',textOverflow: 'ellipsis',overflow: 'hidden',whiteSpace: 'nowrap' }}>Admin  Admin admin adimn</Typography>
             <Typography sx={{ fontSize: '12px', marginTop: '5px', color: 'gray', fontFamily: 'Public Sans,sans-serif' }}>View Profile</Typography>
           </NavLink>
         </Box>
@@ -81,8 +81,8 @@ function Main(props) {
 
     </Box>
   );
- 
   const container = window !== undefined ? () => window().document.body : undefined;
+
 
   return (
     <>
@@ -146,8 +146,10 @@ function Main(props) {
           >
             {drawer}
           </Drawer>
+          
         </Box>
-       <Outlet/>
+              <Outlet/>
+
       </Box>
       <Foot/>
     </>

@@ -1,27 +1,19 @@
-import { Button, Container, Grid, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { Button, Container, Grid,  TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system'
 import React from 'react'
 import Main from './Stylecont';
 
 import Foot from '../Foot';
+import { useForm } from "react-hook-form";
 
 function Cont() {
-  const [showPassword, setShowPassword] = React.useState(false);
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
-  const [age, setAge] = React.useState('');
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+ 
+  const { register, handleSubmit, formState: { errors } } = useForm({mode: "all",});
+  const onSubmit = (data) => console.log(data);
 
 
   return (
+    <>
     <Main>
       <Box className='main'>
         <Container >
@@ -35,13 +27,21 @@ function Cont() {
 
               <Box sx={{ width: '100%', marginTop: '15px' }}>
 
-                <form autoComplete='off'>
-                  <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                <form autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
+                  <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 12, sm: 12, md: 12 }}>
                     <Grid item xs={6}>
-                      <TextField fullWidth variant='outlined' label='First Name' />
+                      <TextField fullWidth variant='outlined' label='First Name' 
+                       name='firstname'
+                       {...register("firstname", { required: 'First Name is required' })}
+                       error={Boolean(errors.firstname)}
+                       helperText={errors.firstname?.message} />
                     </Grid>
                     <Grid item xs={6} >
-                      <TextField fullWidth variant='outlined' label='Last Name' />
+                      <TextField fullWidth variant='outlined' label='Last Name'
+                      name='lastname'
+                      {...register("lastname", { required: 'Last Name is required' })}
+                      error={Boolean(errors.lastname)}
+                      helperText={errors.lastname?.message} />
 
                     </Grid>
                     <Grid item xs={12}>
@@ -55,7 +55,7 @@ function Cont() {
 
 
                     <Grid item xs={12}>
-                      <Button className='Createbtn' variant="contained"><b>Create</b></Button>
+                      <Button className='Createbtn' type='Submit' variant="contained"><b>Create</b></Button>
 
                     </Grid>
                   </Grid>
@@ -65,8 +65,10 @@ function Cont() {
           </Box>
         </Container>
       </Box>
-      <Foot />
     </Main>
+          <Foot />
+          </>
+
   )
 }
 

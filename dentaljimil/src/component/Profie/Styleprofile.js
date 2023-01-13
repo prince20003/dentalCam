@@ -62,18 +62,32 @@ const Prof = styled.div`${{
       }
       .prologo{
           width: 512px;
-          height: '200px',
+          height: 200px
           
       }
   }
-  @media (max-width:426px) and (min-width:376px){
+  @media (max-width:426px) and (min-width:390px){
     .main{
-      width:390px  
+      width:280px;
+      padding:80px 0px 60px 80px;
+  
+    }
+    .prologo{
+        width: 312px;
+        height: 200px
+        
     }
   }
-  @media (max-width:376px) and (min-width:323px){
+  @media (max-width:390px) and (min-width:323px){
     .main{
-      width:335px  
+      width:280px;
+      padding:80px 0px 60px 50px
+  
+    }
+    .prologo{
+        width: 282px;
+        height: 200px
+        
     }
     `
 export default Prof

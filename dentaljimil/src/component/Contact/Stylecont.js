@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 
 
-const Main = styled.div({
+const Main = styled.div`${{
    
   '& .main':{
 padding:'0px 14px'  },
@@ -60,5 +60,46 @@ padding:'0px 14px'  },
 },
   
 
-})
+}}
+@media (max-width:1024px) and (min-width:770px){
+  .mainbo{
+     margin : 0 10px
+  }
+  .main{
+    padding : 0px 14px 95px 14px
+  }
+}
+@media (max-width:768px) and (min-width:428px){
+  .mainbo{
+     margin : 0 50px 0 30px
+  }
+  .main{
+    padding : 95px 14px  
+  }
+}
+@media (max-width:426px) and (min-width:376px){
+  .mainbo{
+     margin : 0px
+  }
+  .main{
+    padding : 0 0 90px 0px  
+  }
+}
+@media (max-width:376px) and (min-width:321px){
+  .mainbo{
+     margin : 0px
+  }
+  .main{
+    padding : 0 0 75px 0px  
+  }
+}
+
+}
+@media (max-width:1441px) and (min-width:1030px){
+  .mainbo{
+    padding:0px 0 75px 0;
+  }
+  
+}
+`
 export default Main
