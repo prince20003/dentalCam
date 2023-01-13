@@ -4,8 +4,11 @@ import { Box } from '@mui/system'
 import Butt from './Buttonstyle';
 import Contactstyled from './Contactstyle';
 import Footer from './Footer';
+import { useForm } from 'react-hook-form';
 
 function Contact() {
+    const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'all', });
+    const onSubmit = (data) => console.log(data);
     return (
         <>
             <Contactstyled>
@@ -23,16 +26,24 @@ function Contact() {
                                 </h2>
                                 <Typography variant='h1' className='createcliniclogo'>Contact Us</Typography>
                                 <Box sx={{ marginTop: '15px' }}>
-                                    <form autoComplete='off'>
+                                    <form autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
                                         <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 12, sm: 12, md: 12 }}>
                                             <Grid item xs={6} >
-                                                <TextField sx={{ width: '100%',}} variant='outlined' label='First Name' />
+                                                <TextField sx={{ width: '100%',}} variant='outlined' label='First Name' color='success' name='firstname'
+                                                 {...register("firstname", { required: 'First Name is required' })}
+                                                 error={Boolean(errors.firstname)}
+                                                 helperText={errors.firstname?.message}
+                                                />
                                             </Grid>
                                             <Grid item xs={6}>
-                                                <TextField sx={{ width: '100%', }} variant='outlined' label='Last Name' />
+                                                <TextField sx={{ width: '100%', }} variant='outlined' label='Last Name' color='success' name='lastname' 
+                                                 {...register("lastname", { required: 'Last Name is required' })}
+                                                 error={Boolean(errors.lastname)}
+                                                 helperText={errors.lastname?.message}
+                                                />
                                             </Grid>
                                             <Grid item xs={12}>
-                                                <TextField sx={{ width: '100%' }} variant='outlined' label='Email'/>
+                                                <TextField sx={{ width: '100%' }} variant='outlined' label='Email' color='success'/>
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <TextField
@@ -41,11 +52,12 @@ function Contact() {
                                                     multiline
                                                     rows={7}
                                                     fullWidth
+                                                    color='success'
                                                 />
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Butt>
-                                                    <Button variant='contained' fullWidth className='loginb'>Sumbit</Button>
+                                                    <Button variant='contained' fullWidth className='loginb' type='sumbit'>Sumbit</Button>
                                                 </Butt>
                                             </Grid>
                                         </Grid>

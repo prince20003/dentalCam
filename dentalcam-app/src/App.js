@@ -10,6 +10,7 @@ import Profile from './Component/Profile';
 import Data from './Component/Data';
 import Contact from './Component/Contact';
 import Privacy from './Component/Privacy';
+import PageNotFound from './Component/PageNotFound';
 
 
 const App = () => {
@@ -18,12 +19,13 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path='/login' element={<LoginPage />} />
-          <Route path='/' element={<LeftSlidbar />} >
+          <Route path='/' element={<LeftSlidbar />} >        
             <Route path='/clinics' element={<Data />} />
             <Route path='/clinics/create' element={<Adduser />} />
             <Route path='/problem' element={<Problem />} />
             <Route path='/contactus' element={<Contactus />} />
             <Route path='/profile' element={<Profile />} />
+            <Route path='/*' element={<PageNotFound />} />
           </Route>
             <Route path='/contact-us' element={<Contact />} />
             <Route path='/TermsAndConditions' element={<Term />} />

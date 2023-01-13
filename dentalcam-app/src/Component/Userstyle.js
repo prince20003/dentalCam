@@ -49,7 +49,7 @@ const Userstyle = styled.div`${{
     padding : 95px 14px
   }
 }
-@media (max-width:427px) and (min-width:377px){    
+@media (max-width:428px) and (min-width:377px){    
   .mainbo{
      margin : 0px 
   }
@@ -57,7 +57,7 @@ const Userstyle = styled.div`${{
     padding : 95px 14px
   }
 }
-@media (max-width:376px) and (min-width:325px){    
+@media (max-width:377px) and (min-width:325px){    
   .mainbo{
      margin : 0px 
   }

@@ -2,22 +2,25 @@ import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import AB from './Loginstyle'
 import Butt from './Buttonstyle'
-import { Button, Card, Checkbox, FormControl, FormControlLabel, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from '@mui/material';
+import { Button, Card, Checkbox, FormControl, FormControlLabel, FormHelperText, IconButton, InputAdornment, InputLabel, OutlinedInput, Typography } from '@mui/material';
+import TextField from '@mui/material/TextField';
 import { Container } from '@mui/system';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Footer from './Footer'
-import MediaLogin from './MediaLogin';
+import { useForm } from "react-hook-form";
 
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [values, setValues] = useState({
-    username: '',
-    password: ''
-  })
+  // const [values, setValues] = useState({
+  //   username: '',
+  //   password: ''
+  // })
 
-  // const { data, handleSubmit,errors } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'all', });
+  const onSubmit = (data) => console.log(data);
+
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -25,14 +28,15 @@ const LoginPage = () => {
     event.preventDefault();
   };
 
-  const handleChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value })
-  }
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log("click")
-  }
+  // const handleChange = (e) => {
+  //   setValues({ ...values, [e.target.name]: e.target.value })
+  // }
+
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   console.log("click")
+  // }
 
   return (
     <>
@@ -52,15 +56,24 @@ const LoginPage = () => {
               <Box className='de'>
                 <Typography variant='h4' className='sign' >Sign in to DentalCam</Typography>
               </Box>
-              <form autoComplete='off'>
+              <form autoComplete='off' onSubmit={handleSubmit(onSubmit)} >
                 <Box className='formdata'>
-                  <TextField id="outlined-basic" sx={{ borderRadius: '8px' }} label="Username" variant="outlined" color="success" name='username' value={values.username} onChange={handleChange} />
-                  <FormControl sx={{ marginTop: '24px', borderRadius: '8px' }} variant="outlined" color="success" name='password' value={values.password} onChange={handleChange}>
-                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                  <TextField id="outlined-basic" sx={{ borderRadius: '8px' }} label="Username" variant="outlined" color="success" name='username'
+                    {...register("username", { required: 'User Name is required' })}
+                    error={Boolean(errors.username)}
+                    helperText={errors.username?.message}
+                  />
+                  <FormControl sx={{ marginTop: '24px', borderRadius: '8px' }} variant="outlined" color="success" name='password'
+                    {...register("password", { required: 'Password is required' })}
+                    error={Boolean(errors.password)}
+                  >
+                    <InputLabel htmlFor="outlined-adornment-password" name='password'>Password</InputLabel>
                     <OutlinedInput
                       id="outlined-adornment-password"
                       type={showPassword ? 'text' : 'password'}
+                      name='password'
                       label="Password"
+
                       endAdornment={
                         <InputAdornment position="end">
                           <IconButton
@@ -69,24 +82,24 @@ const LoginPage = () => {
                             onMouseDown={handleMouseDownPassword}
                             edge="end"
                           >
-                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+
                           </IconButton>
                         </InputAdornment>
                       }
                     />
+                    <FormHelperText>{errors.password?.message}</FormHelperText>
                   </FormControl>
                   <FormControlLabel className='check' control={<Checkbox defaultChecked sx={{ '&.Mui-checked': { color: '#0B3379' }, paddingLeft: '0px' }} />} label="Remember me" />
                   <Butt>
-                    <Button variant="contained" className='loginb' fullWidth onClick={handleLogin}>Login</Button>
+                    <Button variant="contained" className='loginb' fullWidth type='Submit' >Login</Button>
                   </Butt>
                 </Box>
               </form>
             </Box>
           </Container>
         </Box>
-        <MediaLogin>
-          <Footer />
-        </MediaLogin>
+        <Footer />
       </AB>
     </>
   )
