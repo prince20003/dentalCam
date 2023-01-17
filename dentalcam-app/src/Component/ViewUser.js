@@ -3,9 +3,10 @@ import React from 'react'
 import Profilestyle from './Profilestyle'
 import Userstyle from './Userstyle'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function ViewUser() {
+    const location = useLocation();
     const navigate = useNavigate();
     const handleBack = () =>{
         navigate('/clinics')
@@ -32,19 +33,19 @@ function ViewUser() {
                                             <TableBody>
                                                 <TableRow>
                                                     <TableCell className='cell'>Clinc Name</TableCell>
-                                                    <TableCell className='cell'></TableCell>
+                                                    <TableCell className='cell'>{location.state.data.clinicname}</TableCell>
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableCell className='cell'>User Name</TableCell>
-                                                    <TableCell className='cell'></TableCell>
+                                                    <TableCell className='cell'>{location.state.data.username}</TableCell>
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableCell className='cell'>Email</TableCell>
-                                                    <TableCell className='cell'></TableCell>
+                                                    <TableCell className='cell'>{location.state.data.email}</TableCell>
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableCell className='cell'>Plan name</TableCell>
-                                                    <TableCell className='cell'></TableCell>
+                                                    <TableCell className='cell'>{location.state.data.plan}</TableCell>
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableCell className='cell'>Active</TableCell>
@@ -52,12 +53,12 @@ function ViewUser() {
                                                 </TableRow>
                                                 <TableRow>
                                                     <TableCell className='cell'>Expiry Date</TableCell>
-                                                    <TableCell className='cell'></TableCell>
+                                                    <TableCell className='cell'>{location.state.data.date}</TableCell>
                                                 </TableRow>
                                             </TableBody>
                                         </Table>
                                         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                            <NavLink style={{textDecoration:'none'}}  to='/clinics/update'><Button variant='contained' className='update'>Update</Button></NavLink>
+                                            <Link style={{textDecoration:'none'}}  to='/clinics/update' state={location.state}><Button variant='contained' className='update'>Update</Button></Link>
                                             <Button variant='contained' className='delete'>Delete</Button>
                                         </Box>
                                     </CardContent>

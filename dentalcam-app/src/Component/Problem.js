@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import Problemstyle from './Problemstyle'
-import  {Button, Box, Grid, Table, TableHead, TableRow, TableCell, TableContainer, TableBody, Dialog, DialogTitle, DialogContent, TextField, DialogActions, Typography, useStepContext } from '@mui/material'
+import  {Button, Box, Grid, Table, TableHead, TableRow, TableCell, TableContainer, TableBody, Dialog, DialogTitle, DialogContent, TextField, DialogActions, Typography } from '@mui/material'
 import Butt from './Buttonstyle'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProblem, deleteProblem } from '../actions'
@@ -16,7 +16,7 @@ function Problem() {
     };
     const handleOpen = (ele) => {
       setOp(true);
-      const problemId = ele.id
+      // problemId = ele.id
      setProblemId(ele.id)
     };
     const Problem = useSelector((state) => state.dentalreducers.problem)

@@ -26,7 +26,7 @@ function Adduser() {
         date: "",
         plan: "",
     })
-    // console.log(userData)
+    console.log(userData)
 
     // const list = useSelector((state) => state.dentalreducers.list)
 
@@ -56,7 +56,7 @@ function Adduser() {
                                 <Typography variant='h1' className='createcliniclogo'>Create Clinic</Typography>
                                 <Box sx={{ width: '100%', marginTop: '28px' }}>
                                     <form autoComplete='off'>
-                                        <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                                        <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 12, md: 12 }}>
                                             <Grid item xs={6} >
                                                 <TextField sx={{ width: '100%', }} variant='outlined' label='Clinic Name' value={userData.clinicname} onChange={(e) => setUserData({ ...userData, clinicname: e.target.value })} />
                                             </Grid>

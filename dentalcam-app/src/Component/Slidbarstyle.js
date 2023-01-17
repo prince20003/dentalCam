@@ -63,7 +63,6 @@ const Slidbarstyle = styled.div`${{
         paddingLeft: '16px',
         paddingRight: '16px',
         paddingBottom: '80px',
-        width: '1207px'
     },
     '& .search': {
         display: 'flex',
@@ -74,6 +73,9 @@ const Slidbarstyle = styled.div`${{
     '& .sea': {
         borderRadius: '8px',
         fontFamily: 'Public Sans, sans-serif',
+    },
+    '& .tab':{
+        width:'1220px'
     },
     '& .iconch': {
         textDecoration: 'none',
@@ -86,7 +88,49 @@ const Slidbarstyle = styled.div`${{
         height: '1em',
     },
 }}
-
+ @media (max-width:1441px) and (min-width:1026px){
+    .tab {
+        width: 1120px
+    }
+ }
+ @media (max-width:1026px) and (min-width:770px){
+    .tab {
+        width: 986px
+    }
+ }
+ @media (max-width:770px) and (min-width:430px){
+    .tab{
+        width:730px;
+    }
+    .data {
+        padding-right:0px;
+    }
+    .iconch {
+        margin-right:2px;
+    }
+ }
+ @media (max-width:430px) and (min-width:380px){
+    .data {
+        padding-right:0px;
+    }
+    .tab{
+        width:auto;
+    }
+    .iconch {
+        margin-right:2px;
+    }
+ }
+ @media (max-width:380px) and (min-width:323px){
+    .data {
+        padding-right:0px;
+    }
+    .tab{
+        width:320px
+    }
+    .iconch {
+        margin-right:2px;
+    }
+ }
 `
 
 

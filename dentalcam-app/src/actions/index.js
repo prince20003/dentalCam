@@ -9,13 +9,13 @@ export const addUser = (userData) =>{
 }
 
 
-export const editUser = (id,name) =>{
+export const editUser = (id,update) =>{
     // console.log(inputData)
     return {
         type : "EDIT_USER",
         payload : {
             idd : id,
-           name: name
+           name: update
         }
     }
 }

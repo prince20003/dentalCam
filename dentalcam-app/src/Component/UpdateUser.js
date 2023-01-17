@@ -11,39 +11,40 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Butt from './Buttonstyle';
-import { useNavigate } from 'react-router-dom';
-import { addUser } from '../actions';
-import { useDispatch, useSelector } from "react-redux"
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux"
+import { editUser } from '../actions';
 
 function UpdateUser() {
+   const location =  useLocation()
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    // const [update, setUpdate] = useState()
-    // const [userData, setUserData] = useState({
-    //     clinicname: "",
-    //     email: "",
-    //     username: "",
-    //     password: "",
-    //     date: "",
-    //     plan: "",
-    // })
-    // console.log(userData)
 
-    const list = useSelector((state) => state.dentalreducers.list)
+    const [update, setUpdate] = useState({
+        clinicname: location.state.data.clinicname,
+        email: location.state.data.email,
+        username: location.state.data.username,
+        password: location.state.data.password,
+        date: location.state.data.date,
+        plan: location.state.data.plan,
+    
+    })
+    // console.log(update)
 
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-    // const [age, setAge] = React.useState('');
-    const handleChange = (event) => {
-        // setUserData({ ...userData, plan: event.target.value });
-    };
 
     const handleBack = () => {
         navigate('/clinics')
     }
+
+   const handleUpdate = () =>{
+    dispatch(editUser(location.state.id,update))
+   }
+
 
     return (
         <>
@@ -57,22 +58,24 @@ function UpdateUser() {
                                 <Typography variant='h1' className='createcliniclogo'>Update Clinic</Typography>
                                 <Box sx={{ width: '100%', marginTop: '28px' }}>
                                     <form autoComplete='off'>
-                                        <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                                        <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 12, md: 12 }}>
                                             <Grid item xs={6} >
-                                                <TextField sx={{ width: '100%', }} variant='outlined' label='Clinic Name' value={list.clinicname}  />
+                                                <TextField sx={{ width: '100%', }} variant='outlined' label='Clinic Name' value={update.clinicname} onChange={(e) => setUpdate({ ...update, clinicname: e.target.value })} />
                                             </Grid>
                                             <Grid item xs={6}>
-                                                <TextField sx={{ width: '100%' }} variant='outlined' label='Email' value={list.email}  />
+                                                <TextField sx={{ width: '100%' }} variant='outlined' label='Email' value={update.email} onChange={(e) => setUpdate({ ...update, email: e.target.value })}  />
                                             </Grid>
                                             <Grid item xs={6}>
-                                                <TextField sx={{ width: '100%' }} variant='outlined' label='User Name'  />
+                                                <TextField sx={{ width: '100%' }} variant='outlined' label='User Name' value={update.username} onChange={(e) => setUpdate({ ...update, username: e.target.value })} />
                                             </Grid>
                                             <Grid item xs={6}>
-                                                <FormControl sx={{ width: '100%' }} variant="outlined" >
+                                                <FormControl sx={{ width: '100%' }} variant="outlined" value={update.password}  >
                                                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                                     <OutlinedInput
                                                         id="outlined-adornment-password"
                                                         type={showPassword ? 'text' : 'password'}
+                                                        value={update.password}
+                                                        onChange={(e) => setUpdate({ ...update, password: e.target.value })}
                                                         endAdornment={
                                                             <InputAdornment position="end">
                                                                 <IconButton
@@ -89,7 +92,7 @@ function UpdateUser() {
                                                     />
                                                 </FormControl>         </Grid>
                                             <Grid item xs={6}>
-                                                <TextField type='date' fullWidth  />
+                                                <TextField type='date' fullWidth value={update.date} onChange={(e) => setUpdate({ ...update, date: e.target.value })}  />
                                             </Grid>
                                             <Grid item xs={6}>
                                                 <FormControl fullWidth>
@@ -97,11 +100,9 @@ function UpdateUser() {
                                                     <Select
                                                         labelId="demo-simple-select-label"
                                                         id="demo-simple-select"
-                                                        // value={userData.plan}
-                                                        // value={age} 
-                                                        // onChange={(e) => setUserData(e.target.value)}
+                                                        value={update.plan} onChange={(e) => setUpdate({ ...update, plan: e.target.value })}
                                                         label="Plan"
-                                                        onChange={handleChange}
+                                                       
                                                     >
                                                         <MenuItem value="Monthly Dental Plan PRO">Monthly Dental Plan PRO</MenuItem>
                                                         <MenuItem value="3-Monthly Dental Plan PRO">3-Monthly Dental Plan PRO</MenuItem>
@@ -111,7 +112,7 @@ function UpdateUser() {
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Butt>
-                                                    <Button variant='contained' fullWidth className='loginb'>Update</Button>
+                                                    <Button variant='contained' fullWidth className='loginb' onClick={handleUpdate}>Update</Button>
                                                 </Butt>
                                             </Grid>
                                         </Grid>
