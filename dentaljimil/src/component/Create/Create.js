@@ -24,7 +24,6 @@ function Create() {
     date:'',
     plan:'',
   })
-console.log(data);
     const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -64,11 +63,12 @@ console.log(data);
 
         </Grid>
         <Grid item xs={6}>
-        <FormControl fullWidth variant="outlined" onChange={(e) => setData({...data,password: e.target.value})} value={data.password}>
+        <FormControl fullWidth variant="outlined" onChange={(e) => setData({...data,password: e.target.value})} >
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
             type={showPassword ? 'text' : 'password'}
+            value={data.password}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton

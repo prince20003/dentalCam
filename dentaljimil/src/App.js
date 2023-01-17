@@ -40,7 +40,7 @@ function App() {
           <Route path="/contactus" element={<Contact />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/*" element={<Error />} />
-          <Route path="/View" element={<View/>} />
+          <Route path="/view" element={<View/>} />
           <Route path="/Update" element={<Update/>} />
         </Route>
         <Route path="/Contact" element={<Cont />} />

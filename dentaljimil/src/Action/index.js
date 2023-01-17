@@ -10,13 +10,14 @@ export const addcreate = (data) => {
     }
 
 }
-export const view = (id,data) => {
-    console.log(data);
+
+export const prob= (problem) => {
+    console.log(problem);
     return {
-        type: 'VIEW',
+        type: 'PROB',
         payload: {
-            viewid:id,
-           viewdata:data
+            problemid:new Date().getTime().toString(),
+           problemdata:problem
 
         }
 
@@ -24,3 +25,20 @@ export const view = (id,data) => {
 
 }
 
+export const update = (id,data) => {
+    console.log(id,data)
+    return {
+        type: 'UPDATE',
+        payload:{
+            idd:id,
+            name:data,
+        }
+
+  }
+}
+export const dele = (id) => {
+    return {
+        type: 'DEL',
+        id,
+    }
+}

@@ -2,45 +2,45 @@ import { Box, Button, Container, Paper, Table, TableBody, TableCell, TableRow, T
 import React from 'react'
 import Main from './Styleview'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
 
 function View() {
-    const view = useSelector((state) => state.Dental.view)
-
+const vi= useLocation()
   return (
     <>
   <Main>
       <Box className='main'>
         <Container >
        <Box className='mainbo'>
+        <Link to='/clinic'>
        <ArrowBackIcon className='back'/>
+       </Link>
        <Box className='mainbox'>
        <Typography variant='h1' className='createcliniclogo'>View Clinic</Typography>
 
        <Box sx={{ width: '100%',marginTop:'15px' }}>
           <Paper className='paper'>
             <Table >
-            {view.map((row) => (
                   <TableBody>
                   <TableRow>
                       <TableCell>Clinic Name</TableCell>
-                      <TableCell>{row.data.Clinicname}</TableCell>
+                      <TableCell>{vi.state.data.Clinicname}</TableCell>
                   </TableRow>
                   <TableRow>
                       <TableCell>User Name</TableCell>
-                      <TableCell>{row.data.Username}</TableCell>
+                      <TableCell>{vi.state.data.Username}</TableCell>
                   </TableRow>
                   <TableRow>
                       <TableCell>Email</TableCell>
-                      <TableCell>{row.data.Email}</TableCell>
+                      <TableCell>{vi.state.data.Email}</TableCell>
                   </TableRow>
                   <TableRow>
                       <TableCell>Plan-Name</TableCell>
-                      <TableCell>{row.data.plan}</TableCell>
+                      <TableCell>{vi.state.data.plan}</TableCell>
                   </TableRow>
                   <TableRow>
                       <TableCell>Expiry Date</TableCell>
-                      <TableCell>{row.data.date}</TableCell>
+                      <TableCell>{vi.state.data.date}</TableCell>
                   </TableRow>
                   <TableRow>
                       <TableCell>Active</TableCell>
@@ -48,36 +48,10 @@ function View() {
                   </TableRow>
                   
               </TableBody>
-          ))} 
-                                    {/* <TableBody>
-                                        <TableRow>
-                                            <TableCell>Clinic Name</TableCell>
-                                            <TableCell>{view.Cinicname}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Last Name</TableCell>
-                                            <TableCell>Admin</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Plan-Name</TableCell>
-                                            <TableCell>3-Month Dental Plan PRO</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Expiry Date</TableCell>
-                                            <TableCell>10-07-2022</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Password</TableCell>
-                                            <TableCell></TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Password</TableCell>
-                                            <TableCell></TableCell>
-                                        </TableRow>
-                                    </TableBody> */}
+                                    
                                   </Table>
                                   <Box className='bt'>
-                                    <Button variant="contained" className='updatebtn'>Update</Button>
+                                  <Link to='/Update' state={vi.state}><Button variant="contained" className='updatebtn'>Update</Button></Link>
                                     <Button variant="contained" className='delbtn'>Delete</Button>
 
                                   </Box>

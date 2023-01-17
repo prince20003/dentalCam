@@ -11,19 +11,21 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useDispatch } from 'react-redux';
-import { addcreate } from '../../Action';
+import {  update } from '../../Action';
+import { useLocation } from 'react-router-dom';
 function Update() {
     const dispatch = useDispatch()
-
+   const up=useLocation()
     const [data, setData] = useState({
-      Clinicname:'',
-      Email:'',
-      Username:'',
-      password:'',
-      date:'',
-      plan:'',
+      Clinicname:up.state.data.Clinicname,
+      Email:up.state.data.Email,
+      Username:up.state.data.Username,
+      password:up.state.data.password,
+      date:up.state.data.date,
+      plan:up.state.data.plan,
+      
+      
     })
-  console.log(data);
       const [showPassword, setShowPassword] = React.useState(false);
   
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -45,7 +47,7 @@ function Update() {
        <Box className='mainbo'>
        <ArrowBackIcon className='back'/>
        <Box className='mainbox'>
-       <Typography variant='h1' className='createcliniclogo'>Create Clinic</Typography>
+       <Typography variant='h1' className='createcliniclogo'>Update Clinic</Typography>
 
        <Box sx={{ width: '100%',marginTop:'28px' }}>
         
@@ -63,11 +65,12 @@ function Update() {
 
         </Grid>
         <Grid item xs={6}>
-        <FormControl fullWidth variant="outlined" onChange={(e) => setData({...data,password: e.target.value})} value={data.password}>
+        <FormControl fullWidth variant="outlined" onChange={(e) => setData({...data,password: e.target.value})} >
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
             type={showPassword ? 'text' : 'password'}
+            value={data.password}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -103,12 +106,7 @@ function Update() {
       </FormControl>
          </Grid>
          <Grid item xs={12}>
-         <Button className='Createbtn'  variant="contained" onClick={() => dispatch(addcreate(data),setData({Clinicname:'',
-    Email:'',
-    Username:'',
-    password:'',
-    date:'',
-    plan:'',}))}><b>Create</b></Button>
+         <Button className='Createbtn'  variant="contained" onClick={() => dispatch(update(up.state.id,data))}><b>Update</b></Button>
 
         </Grid>
       </Grid>

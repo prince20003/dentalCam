@@ -134,7 +134,8 @@ width:'100px',
     borderRadius:'8px',
     textTransform:'capitalize',
     padding:'6px 16px',
-   
+    float:'right',
+    marginRight:'20px'
     },
     '& .Createbtn:hover':{
       backgroundColor: '#007B55',

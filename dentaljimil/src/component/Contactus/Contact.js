@@ -28,14 +28,18 @@ function Contact() {
         <Grid item xs={6}>
             <TextField fullWidth variant='outlined' label='First Name'
             name='firstname'
-             {...register("firstname", { required: 'First Name is required' })}
+             {...register("firstname", { required: 'First Name is required'
+                                         
+             })}
              error={Boolean(errors.firstname)}
              helperText={errors.firstname?.message}/>
         </Grid>
         <Grid item xs={6} >
         <TextField fullWidth variant='outlined' label='Last Name'
         name='lastname'
-        {...register("lastname", { required: 'Last Name is required' })}
+        {...register("lastname", { required: 'Last Name is required',
+                               pattern: /^[A-Za-z]+$/i
+                                  })}
         error={Boolean(errors.lastname)}
         helperText={errors.lastname?.message}/>
 
