@@ -1,7 +1,7 @@
 import { Button, Container, Grid, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system'
 import React,{useState} from 'react'
-import Main from './StyleCreate';
+import Main from './Styleupdate';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -12,35 +12,34 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useDispatch } from 'react-redux';
 import { addcreate } from '../../Action';
+function Update() {
+    const dispatch = useDispatch()
 
-function Create() {
-  const dispatch = useDispatch()
-
-  const [data, setData] = useState({
-    Clinicname:'',
-    Email:'',
-    Username:'',
-    password:'',
-    date:'',
-    plan:'',
-  })
-console.log(data);
-    const [showPassword, setShowPassword] = React.useState(false);
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
-
-  const handleChange = (event) => {
-    setData({...data,plan:event.target.value});
-  };
-
-      
+    const [data, setData] = useState({
+      Clinicname:'',
+      Email:'',
+      Username:'',
+      password:'',
+      date:'',
+      plan:'',
+    })
+  console.log(data);
+      const [showPassword, setShowPassword] = React.useState(false);
+  
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+  
+    const handleMouseDownPassword = (event) => {
+      event.preventDefault();
+    };
+  
+  
+    const handleChange = (event) => {
+      setData({...data,plan:event.target.value});
+    };
+  
+        
   return (
-    <Main>
+     <Main>
       <Box className='main'>
         <Container >
        <Box className='mainbo'>
@@ -119,8 +118,8 @@ console.log(data);
        </Box>
       </Container>
         </Box>
-    </Main>
+    </Main> 
   )
 }
 
-export default Create
+export default Update

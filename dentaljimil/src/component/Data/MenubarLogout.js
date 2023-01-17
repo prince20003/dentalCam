@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonIcon from '@mui/icons-material/Person';
 import { Button } from '@mui/material';
 import MenuLang from './MenuLang';
-import { Link, NavLink } from 'react-router-dom';
+import {  NavLink } from 'react-router-dom';
 function MenubarLogout() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -96,10 +96,7 @@ function MenubarLogout() {
        <Box sx={{padding:'12px 16px 16px    '}}>
        <Button variant="outlined" sx={{color:'#0000EE',border: '1px solid rgba(145, 158, 171, 0.32)',borderRadius:'8px',textTransform:'capitalize', fontSize: '14px', fontFamily: 'Public Sans,sans-serif', fontWeight: '700',width:'186px'}}>Logout</Button>
        </Box>
-
-
-        
-      </Menu>
+       </Menu>
     </React.Fragment>
     </>
   )

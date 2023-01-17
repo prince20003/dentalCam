@@ -12,6 +12,8 @@ import TermsAndCondiction from './component/TermsAndCondiction/TermsAndCondictio
 import Privacy from './component/TermsAndCondiction/Privacy';
 import * as React from 'react';
 import Error from './component/Error/Error';
+import View from './component/View/View';
+import Update from './component/Update/Update';
 
 function App() {
   // const [loading, setLoading] = React.useState(false);
@@ -38,11 +40,13 @@ function App() {
           <Route path="/contactus" element={<Contact />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/*" element={<Error />} />
+          <Route path="/View" element={<View/>} />
+          <Route path="/Update" element={<Update/>} />
         </Route>
         <Route path="/Contact" element={<Cont />} />
         <Route path="/TermsAndCondition" element={<TermsAndCondiction />} />
         <Route path="/Policy" element={<Privacy />} />
-
+  
       </Routes>
     </BrowserRouter>
   );

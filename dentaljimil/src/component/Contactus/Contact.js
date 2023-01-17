@@ -3,13 +3,7 @@ import { Box } from '@mui/system'
 import React from 'react'
 import Main from './StyleCon';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-// import IconButton from '@mui/material/IconButton';
-// import OutlinedInput from '@mui/material/OutlinedInput';
-// import InputLabel from '@mui/material/InputLabel';
-// import InputAdornment from '@mui/material/InputAdornment';
-// import FormControl from '@mui/material/FormControl';
-// import Visibility from '@mui/icons-material/Visibility';
-// import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
 import { useForm } from "react-hook-form";
 
 function Contact() {

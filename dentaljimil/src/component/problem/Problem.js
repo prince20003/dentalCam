@@ -1,6 +1,6 @@
 import { Button, TextField,  } from '@mui/material';
 import { Box } from '@mui/system'
-import React from 'react'
+import React, { useState } from 'react'
 import Main from './StyleProblem';
 
 import Table from '@mui/material/Table';
@@ -14,7 +14,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 function Problem() {
     const [open, setOpen] = React.useState(false);
-
+  const[problem,setProblem]=useState('')
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -76,6 +76,8 @@ function Problem() {
             type="email"
             fullWidth
             variant="standard"
+            onChange={()=>
+            }
           />
         </DialogContent>
         <DialogActions>
