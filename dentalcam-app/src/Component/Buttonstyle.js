@@ -28,6 +28,19 @@ const Butt =  styled.div({
       fontWeight:'700',
       minWidth: '64px',
       fontFamily:'Public Sans,sans-serif'
+    },
+    '& .deletepop':{
+      backgroundColor:'#0B3379',
+      padding: '0px 22px',
+      borderRadius:'8px',
+      textTransform:'capitalize',
+      height:'35px',
+      boxShadow: '0 8px 16px 0 rgb(0 171 85 / 24%)',
+      fontWeight:'700',
+      fontFamily:'Public Sans,sans-serif'
+    },
+    '& .deletepop:hover':{
+      backgroundColor:'#007B55'
     }
 
  })

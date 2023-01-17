@@ -11,6 +11,8 @@ import Data from './Component/Data';
 import Contact from './Component/Contact';
 import Privacy from './Component/Privacy';
 import PageNotFound from './Component/PageNotFound';
+import UpdateUser from './Component/UpdateUser';
+import ViewUser from './Component/ViewUser';
 
 
 const App = () => {
@@ -22,6 +24,8 @@ const App = () => {
           <Route path='/' element={<LeftSlidbar />} >        
             <Route path='/clinics' element={<Data />} />
             <Route path='/clinics/create' element={<Adduser />} />
+            <Route path='/clinics/view' element={<ViewUser />} />
+            <Route path='/clinics/update' element={<UpdateUser />} />
             <Route path='/problem' element={<Problem />} />
             <Route path='/contactus' element={<Contactus />} />
             <Route path='/profile' element={<Profile />} />

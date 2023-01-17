@@ -13,22 +13,23 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Butt from './Buttonstyle';
 import { useNavigate } from 'react-router-dom';
 import { addUser } from '../actions';
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
-function Adduser() {
+function UpdateUser() {
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    const [userData, setUserData] = useState({
-        clinicname: "",
-        email: "",
-        username: "",
-        password: "",
-        date: "",
-        plan: "",
-    })
+    // const [update, setUpdate] = useState()
+    // const [userData, setUserData] = useState({
+    //     clinicname: "",
+    //     email: "",
+    //     username: "",
+    //     password: "",
+    //     date: "",
+    //     plan: "",
+    // })
     // console.log(userData)
 
-    // const list = useSelector((state) => state.dentalreducers.list)
+    const list = useSelector((state) => state.dentalreducers.list)
 
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -37,7 +38,7 @@ function Adduser() {
     };
     // const [age, setAge] = React.useState('');
     const handleChange = (event) => {
-        setUserData({ ...userData, plan: event.target.value });
+        // setUserData({ ...userData, plan: event.target.value });
     };
 
     const handleBack = () => {
@@ -53,21 +54,21 @@ function Adduser() {
                         <Box className='mainbo'>
                             <ArrowBackIcon className='back' onClick={handleBack} sx={{ cursor: 'pointer' }} />
                             <Box className='mainbox'>
-                                <Typography variant='h1' className='createcliniclogo'>Create Clinic</Typography>
+                                <Typography variant='h1' className='createcliniclogo'>Update Clinic</Typography>
                                 <Box sx={{ width: '100%', marginTop: '28px' }}>
                                     <form autoComplete='off'>
                                         <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>
                                             <Grid item xs={6} >
-                                                <TextField sx={{ width: '100%', }} variant='outlined' label='Clinic Name' value={userData.clinicname} onChange={(e) => setUserData({ ...userData, clinicname: e.target.value })} />
+                                                <TextField sx={{ width: '100%', }} variant='outlined' label='Clinic Name' value={list.clinicname}  />
                                             </Grid>
                                             <Grid item xs={6}>
-                                                <TextField sx={{ width: '100%' }} variant='outlined' label='Email' value={userData.email} onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
+                                                <TextField sx={{ width: '100%' }} variant='outlined' label='Email' value={list.email}  />
                                             </Grid>
                                             <Grid item xs={6}>
-                                                <TextField sx={{ width: '100%' }} variant='outlined' label='User Name' value={userData.username} onChange={(e) => setUserData({ ...userData, username: e.target.value })} />
+                                                <TextField sx={{ width: '100%' }} variant='outlined' label='User Name'  />
                                             </Grid>
                                             <Grid item xs={6}>
-                                                <FormControl sx={{ width: '100%' }} variant="outlined" value={userData.password} onChange={(e) => setUserData({ ...userData, password: e.target.value })}>
+                                                <FormControl sx={{ width: '100%' }} variant="outlined" >
                                                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                                     <OutlinedInput
                                                         id="outlined-adornment-password"
@@ -88,7 +89,7 @@ function Adduser() {
                                                     />
                                                 </FormControl>         </Grid>
                                             <Grid item xs={6}>
-                                                <TextField type='date' fullWidth value={userData.date} onChange={(e) => setUserData({ ...userData, date: e.target.value })} />
+                                                <TextField type='date' fullWidth  />
                                             </Grid>
                                             <Grid item xs={6}>
                                                 <FormControl fullWidth>
@@ -96,7 +97,7 @@ function Adduser() {
                                                     <Select
                                                         labelId="demo-simple-select-label"
                                                         id="demo-simple-select"
-                                                        value={userData.plan}
+                                                        // value={userData.plan}
                                                         // value={age} 
                                                         // onChange={(e) => setUserData(e.target.value)}
                                                         label="Plan"
@@ -110,14 +111,7 @@ function Adduser() {
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Butt>
-                                                    <Button variant='contained' fullWidth className='loginb' onClick={() => dispatch(addUser(userData), setUserData({
-                                                        clinicname: "",
-                                                        email: "",
-                                                        username: "",
-                                                        password: "",
-                                                        date: "",
-                                                        plan: "",
-                                                    }))}>Create</Button>
+                                                    <Button variant='contained' fullWidth className='loginb'>Update</Button>
                                                 </Butt>
                                             </Grid>
                                         </Grid>
@@ -134,4 +128,4 @@ function Adduser() {
     )
 }
 
-export default Adduser
+export default UpdateUser

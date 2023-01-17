@@ -19,6 +19,28 @@ const Profilestyle = styled.div`${{
 
     '& .cardc':{
         padding:'24px',
+    },
+
+    '& .update':{
+      backgroundColor:'#0B3379',
+      padding: '6px 90px',
+      borderRadius:'8px',
+      textTransform:'capitalize',
+      // height:'48px',
+      boxShadow: '0 8px 16px 0 rgb(0 171 85 / 24%)',
+      fontWeight:'700',
+      fontFamily:'Public Sans,sans-serif'
+    },
+    '& .update:hover':{
+      backgroundColor:'#007B55',
+    },
+    '& .delete':{
+      backgroundColor: 'red', 
+      padding: '6px 90px', 
+      borderRadius: '8px'
+    },
+    '& .delete:hover':{
+      backgroundColor:'red'
     }
 
 }}

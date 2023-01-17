@@ -18,7 +18,7 @@ const Problemstyle = styled.div`${{
             width:1120px
       }
     }
-    @media (max-width:1025px) and (min-width:770px){    
+    @media (max-width:1026px) and (min-width:769px){    
       .tablew {
             width:986px
       }
@@ -28,14 +28,14 @@ const Problemstyle = styled.div`${{
             width:730px
       }
     }
-    @media (max-width:427px) and (min-width:377px){    
+    @media (max-width:428px) and (min-width:377px){    
       .tablew {
-            width:auto
+            width:390px
       }
     }
     @media (max-width:376px) and (min-width:323px){    
       .tablew {
-            width:340px
+            width:320px
       }
     }
 `
