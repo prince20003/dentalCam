@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
-import Problemstyle from './Problemstyle'
+import Problemstyle from '../Style/Problemstyle'
 import  {Button, Box, Grid, Table, TableHead, TableRow, TableCell, TableContainer, TableBody, Dialog, DialogTitle, DialogContent, TextField, DialogActions, Typography } from '@mui/material'
-import Butt from './Buttonstyle'
+import Butt from '../Style/Buttonstyle'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProblem, deleteProblem } from '../actions'
 

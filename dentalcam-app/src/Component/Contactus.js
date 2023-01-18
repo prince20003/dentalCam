@@ -1,13 +1,13 @@
 import React from 'react'
-import Userstyle from './Userstyle'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system'
-import Butt from './Buttonstyle';
+import Butt from '../Style/Buttonstyle';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useState, useEffect } from 'react';
+import Userstyle from '../Style/Userstyle';
 
 function Contactus() {
     const [loading, setLoading] = useState(false);

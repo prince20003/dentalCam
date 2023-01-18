@@ -1,8 +1,8 @@
 import { Box } from '@mui/material'
 import React from 'react'
+import Termstyle from '../Style/Termstyle'
 import Footer from './Footer'
 import Termlang from './Termlang'
-import Termstyle from './Termstyle'
 
 function Privacy() {
     return (

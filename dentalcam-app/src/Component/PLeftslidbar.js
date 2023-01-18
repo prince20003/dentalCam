@@ -18,7 +18,7 @@ import Slidbarstyle from '../Style/Slidbarstyle';
 
 const drawerWidth = 280;
 
-function LeftSlidbar(props) {
+function PLeftslidbar(props) {
 
   const navigate = useNavigate();
   const { window } = props;
@@ -51,25 +51,22 @@ function LeftSlidbar(props) {
           </Box>
         </Box>
         <List className='act'>
-          <NavLink to='/clinics' style={{ textDecoration: 'none' }}>
+          <NavLink to='/patients' style={{ textDecoration: 'none' }}>
             <ListItemButton className='listitem'>
               <ListItemIcon sx={{ padding: '0px 0px 0px 10px' }} >
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" className="iconify iconify--maki listicon" width="50" height="22" viewBox="0 0 15 15">
-                  <path id="iconify-react-2" fill="currentColor" d="M7 1c-.6 0-1 .4-1 1v4H2c-.6 0-1 .4-1 1v1c0 .6.4 1 1 1h4v4c0 .6.4 1 1 1h1c.6 0 1-.4 1-1V9h4c.6 0 1-.4 1-1V7c0-.6-.4-1-1-1H9V2c0-.6-.4-1-1-1H7z"></path>
-                </svg>
+              <svg xmlns="http://www.w3.org/2000/svg"  aria-hidden="true" role="img" className='listicon'  width="50" height="22"  viewBox="0 0 24 24"><g id="iconify-react-21"><g id="iconify-react-22"><path id="iconify-react-23" fill="currentColor" d="M9 11a4 4 0 1 0-4-4a4 4 0 0 0 4 4Zm8 2a3 3 0 1 0-3-3a3 3 0 0 0 3 3Zm4 7a1 1 0 0 0 1-1a5 5 0 0 0-8.06-3.95A7 7 0 0 0 2 20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1"></path></g></g></svg>
               </ListItemIcon>
               <ListItemText className='listext' sx={{ color: '#637381' }} >
-                <span style={{ fontSize: '14px', fontFamily: 'Public Sans,sans-serif' }}>Clinics</span>
+                <span style={{ fontSize: '14px', fontFamily: 'Public Sans,sans-serif' }}>Patients</span>
               </ListItemText>
             </ListItemButton >
           </NavLink>
-          <NavLink state to='/problem' style={{ textDecoration: 'none' }}>
+          <NavLink state to='/staffs' style={{ textDecoration: 'none' }}>
             <ListItemButton className='listitem'>
               <ListItemIcon sx={{ padding: '0px 0px 0px 10px' }}>
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="50" height="22" className='listicon' viewBox="0 0 24 24"><g fill="currentColor"><path d="M14.5 10.33h6.67A.83.83 0 0 0 22 9.5A7.5 7.5 0 0 0 14.5 2a.83.83 0 0 0-.83.83V9.5a.83.83 0 0 0 .83.83zm.83-6.6a5.83 5.83 0 0 1 4.94 4.94h-4.94z"></path><path d="M21.08 12h-8.15a.91.91 0 0 1-.91-.91V2.92A.92.92 0 0 0 11 2a10 10 0 1 0 11 11a.92.92 0 0 0-.92-1z"></path></g></svg>
-              </ListItemIcon>
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img"  className='listicon' width="50" height="22" viewBox="0 0 36 36"><path fill="currentColor" d="M31.25 7.4a43.79 43.79 0 0 1-6.62-2.35a45 45 0 0 1-6.08-3.21L18 1.5l-.54.35a45 45 0 0 1-6.08 3.21A43.79 43.79 0 0 1 4.75 7.4L4 7.59v8.34c0 13.39 13.53 18.4 13.66 18.45l.34.12l.34-.12c.14 0 13.66-5.05 13.66-18.45V7.59Zm-4.57 6.65L15.51 24.9l-6.32-6.33a1.4 1.4 0 0 1 2-2L15.54 21l9.19-9a1.4 1.4 0 1 1 2 2Z" class="clr-i-solid clr-i-solid-path-1"></path><path fill="none" d="M0 0h36v36H0z"></path></svg>              </ListItemIcon>
               <ListItemText className='listext' sx={{ color: '#637381' }}>
-                <span style={{ fontSize: "14px", fontFamily: 'Public Sans,sans-serif' }}> Problems</span>
+                <span style={{ fontSize: "14px", fontFamily: 'Public Sans,sans-serif' }}> Staff</span>
               </ListItemText>
             </ListItemButton>
           </NavLink>
@@ -158,8 +155,8 @@ function LeftSlidbar(props) {
   );
 }
 
-LeftSlidbar.propTypes = {
+PLeftslidbar.propTypes = {
   window: PropTypes.func,
 };
 
-export default LeftSlidbar;
+export default PLeftslidbar;

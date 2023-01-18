@@ -1,8 +1,8 @@
 import { Box, Button, Container, Typography } from '@mui/material'
 import React from 'react'
-import PageNotStyle from './PageNotStyle'
-import Butt from './Buttonstyle'
+import Butt from '../Style/Buttonstyle'
 import { useNavigate } from 'react-router-dom'
+import PageNotStyle from '../Style/PageNotStyle';
 
 function PageNotFound() {
     const navigate = useNavigate();

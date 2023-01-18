@@ -1,5 +1,5 @@
 import React from 'react'
-import Headerstyle from './HeaderStyle'
+import Headerstyle from '../Style/HeaderStyle'
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';

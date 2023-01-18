@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import Box from '@mui/material/Box';
-import AB from './Loginstyle'
-import Butt from './Buttonstyle'
 import { Button, Card, Checkbox, FormControl, FormControlLabel, FormHelperText, IconButton, InputAdornment, InputLabel, OutlinedInput, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { Container } from '@mui/system';
@@ -9,6 +7,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Footer from './Footer'
 import { useForm } from "react-hook-form";
+import AB from '../Style/Loginstyle';
+import Butt from '../Style/Buttonstyle';
 
 
 const LoginPage = () => {

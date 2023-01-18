@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, CardMedia, Grid, Table, TableBody, TableCell, TableRow } from '@mui/material'
 import React from 'react'
-import Profilestyle from './Profilestyle'
+import Profilestyle from '../Style/Profilestyle'
 
 function Profile() {
     return (

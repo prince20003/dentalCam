@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React from 'react'
-import FooterStyle from './Footerstyle'
+import FooterStyle from '../Style/Footerstyle'
 
 function Footer() {
   return (

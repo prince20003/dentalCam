@@ -1,7 +1,7 @@
 import { Box, Button, Card, CardContent, Grid, Table, TableBody, TableCell, TableRow, Typography } from '@mui/material'
 import React from 'react'
-import Profilestyle from './Profilestyle'
-import Userstyle from './Userstyle'
+import Profilestyle from '../Style/Profilestyle'
+import Userstyle from '../Style/Userstyle'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 

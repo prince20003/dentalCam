@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Userstyle from './Userstyle'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Button, Container, Grid, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system'
@@ -10,10 +9,11 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import Butt from './Buttonstyle';
+import Butt from '../Style/Buttonstyle';
 import { useNavigate } from 'react-router-dom';
 import { addUser } from '../actions';
 import { useDispatch } from "react-redux"
+import Userstyle from '../Style/Userstyle';
 
 function Adduser() {
     const dispatch = useDispatch();

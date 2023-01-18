@@ -1,16 +1,19 @@
-import { Box, Button, Dialog, DialogContent, Grid, Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography } from '@mui/material'
+import { Box, Button, Dialog, DialogContent, Grid, Table, TableBody, TableCell, TableHead, TablePagination, TableRow, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
-import Slidbarstyle from './Slidbarstyle'
-import Butt from './Buttonstyle'
+import Slidbarstyle from '../Style/Slidbarstyle'
+import Butt from '../Style/Buttonstyle'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteUser } from '../actions'
 
 function Data() {
-  const [id,setId] = useState("")
+  const [id, setId] = useState("")
   const [search, setSearch] = useState("")
+  const [expiryDate, setExpiryDate] = useState("")
+  console.log(expiryDate)
 
   const list = useSelector((state) => state.dentalreducers.list)
+  console.log(list.length)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleCreate = () => {
@@ -19,7 +22,7 @@ function Data() {
   const [open, setOpen] = useState(false);
   const handleClickOpen = (ele) => {
     setOpen(true);
-     setId(ele.id)
+    setId(ele.id)
   };
   const handleClose = () => {
     setOpen(false);
@@ -30,13 +33,25 @@ function Data() {
     console.log(id)
   };
 
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
   return (
     <>
       <Slidbarstyle>
         <Box className='data'>
           <Box>
             <Box className='search'>
-              <TextField variant='outlined' label='Search' size='small' className='sea' onChange={(e) => setSearch(e.target.value)}/>
+              <TextField variant='outlined' label='Search' size='small' className='sea' onChange={(e) => setSearch(e.target.value)} />
               <Butt>
                 <Button className='loginb' variant="contained" onClick={handleCreate} >Create</Button>
               </Butt>
@@ -60,22 +75,30 @@ function Data() {
                       return val
                     }
                     else if (val.data.clinicname.toLowerCase().includes(search.toLowerCase()) ||
-                      val.data.email.toLowerCase().includes(search.toLowerCase())||
-                      val.data.plan.toLowerCase().includes(search.toLowerCase())||
+                      val.data.email.toLowerCase().includes(search.toLowerCase()) ||
+                      val.data.plan.toLowerCase().includes(search.toLowerCase()) ||
                       val.data.date.toLowerCase().includes(search.toLowerCase())
                     ) {
-                          return val
+                      return val
                     }
                   }).map((elem) => {
+                    const ab = elem.data.date
+                    console.log(ab)
+                    const datet = new Date();
+                    const currenDate = datet.getFullYear() + '-' + (datet.getMonth() + 1) + '-' + datet.getDate();
+                    console.log(currenDate)
+                    if (ab === currenDate) {
+                      console.log("yes")
+                    }
                     return (
                       <TableBody sx={{ cursor: 'pointer' }}>
                         <TableRow key={elem.id}>
                           {/* <Link to='/clinics/view' style={{textDecoration:'none',margin:'0px',padding:'0px'}} state={elem.data}> */}
-                         <TableCell>{elem.data.clinicname}</TableCell>
+                          <TableCell>{elem.data.clinicname}</TableCell>
                           <TableCell >{elem.data.email}</TableCell>
                           <TableCell>{elem.data.plan}</TableCell>
                           <TableCell>{elem.data.date}</TableCell>
-                          <TableCell>{}</TableCell>
+                          <TableCell>{ }</TableCell>
                           {/* </Link> */}
                           <TableCell>{
                             <>
@@ -90,33 +113,42 @@ function Data() {
                   })
                 }
               </Table>
+              <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={list.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
             </Box>
           </Box>
         </Box>
         {/* <Outlet /> */}
         <Dialog open={open} onClose={handleClose} sx={{ background: "linear-gradient(75deg, rgba(22, 28, 36, 0.48) 0%, rgba(22, 28, 36, 1) 100%)" }}>
           <DialogContent>
-            <Grid container  sx={{ justifyContent: 'center' }}>
+            <Grid container sx={{ justifyContent: 'center' }}>
               <svg className="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall" style={{
                 color: '#0B3379', fill: 'currentcolor',
-                 display: 'inline-block',    fontSize: '2.1875rem', width:'1em', height:'1em'
+                display: 'inline-block', fontSize: '2.1875rem', width: '1em', height: '1em'
               }} focusable="false" viewBox="0 0 24 24" aria-hidden="true" data-testid="ErrorIcon"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
             </Grid>
           </DialogContent>
           <DialogContent>
-            <Typography component='p' sx={{color:'#637381',fontWeight:'700',fontFamily:'Public Sans,sans-serif'}}>Are you sure to delete Clinic?</Typography>
+            <Typography component='p' sx={{ color: '#637381', fontWeight: '700', fontFamily: 'Public Sans,sans-serif' }}>Are you sure to delete Clinic?</Typography>
           </DialogContent>
           <DialogContent>
             <Grid container spacing={1}>
               <Grid item xs={6}>
-              <Butt>
-                <Button className='deletepop' variant='contained' fullWidth onClick={() => handleSave()}>Yes</Button>
-              </Butt>
+                <Butt>
+                  <Button className='deletepop' variant='contained' fullWidth onClick={() => handleSave()}>Yes</Button>
+                </Butt>
               </Grid>
               <Grid item xs={6}>
-              <Butt>
-                <Button className='deletepop' variant='contained' fullWidth sx={{ marginLeft: '8px' }} onClick={handleClose}>No</Button>
-              </Butt>
+                <Butt>
+                  <Button className='deletepop' variant='contained' fullWidth sx={{ marginLeft: '8px' }} onClick={handleClose}>No</Button>
+                </Butt>
               </Grid>
             </Grid>
           </DialogContent>

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system'
-import Butt from './Buttonstyle';
-import Contactstyled from './Contactstyle';
+import Butt from '../Style/Buttonstyle';
 import Footer from './Footer';
 import { useForm } from 'react-hook-form';
+import Contactstyled from '../Style/Contactstyle';
 
 function Contact() {
     const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'all', });
