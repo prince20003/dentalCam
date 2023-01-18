@@ -16,10 +16,10 @@ padding:'122px 14px'  },
    color:'#0B3379;'
   },
   '& .mainbox':{
-    
     padding:'0 18px',
 
   },
+  
   '& .had':{
     display:'flex',
     alignItems:'center'

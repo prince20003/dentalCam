@@ -1,6 +1,6 @@
 import {  Paper, Typography } from '@mui/material'
 import React from 'react'
-import Fo from './Footer'
+import Fo from '../Style/Footer'
 
 
 

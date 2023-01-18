@@ -1,6 +1,6 @@
 import { Box, Paper, Table, TableBody, TableCell, TableRow } from '@mui/material'
 import React from 'react'
-import Prof from './Styleprofile'
+import Prof from '../../Style/Styleprofile'
 
 
 function Profile() {

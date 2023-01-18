@@ -1,11 +1,11 @@
 import { Box, Button, Checkbox, Container, FormControl, FormControlLabel, FormHelperText, IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import TextField from '@mui/material/TextField';
-import Logmain from './Style'
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Foot from './Foot';
 import { useForm } from "react-hook-form";
+import Logmain from '../Style/Style';
 
 function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm({mode: "all",});

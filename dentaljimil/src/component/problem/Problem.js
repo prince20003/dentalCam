@@ -1,7 +1,7 @@
 import { Button, TableBody, TextField,  } from '@mui/material';
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
-import Main from './StyleProblem';
+import Main from '../../Style/StyleProblem';
 
 import Table from '@mui/material/Table';
 import TableCell from '@mui/material/TableCell';

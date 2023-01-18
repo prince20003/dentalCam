@@ -1,6 +1,6 @@
 import { Box, Button, Container, Paper, Table, TableBody, TableCell, TableRow, Typography } from '@mui/material'
 import React from 'react'
-import Main from './Styleview'
+import Main from '../../Style/Styleview'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link, useLocation } from 'react-router-dom';
 

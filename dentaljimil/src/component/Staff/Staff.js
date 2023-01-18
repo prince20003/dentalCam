@@ -4,19 +4,18 @@ import Table from '@mui/material/Table';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Box, Button, TableBody, TextField } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { dele } from '../../Action';
+import { Box, Button, TextField } from '@mui/material';
+import {  useNavigate } from 'react-router-dom';
+// import { useDispatch, useSelector } from 'react-redux';
 
-function Clinic() {
-  const list = useSelector((state) => state.Dental.list)
+function Staff() {
+//   const list = useSelector((state) => state.Dental.list)
   const [search, setSearch] = useState("");
-  const dispatch = useDispatch()
+//   const dispatch = useDispatch()
 
   const navigate = useNavigate()
   const create = () => {
-    navigate('/clinic/create')
+    navigate('/staff/create')
   }
   return (
     <>
@@ -31,15 +30,14 @@ function Clinic() {
             <Table className='table' aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Clinic Name</TableCell>
-                  <TableCell >Email</TableCell>
-                  <TableCell >Expiry Date</TableCell>
-                  <TableCell >Plan</TableCell>
+                  <TableCell>First Name</TableCell>
+                  <TableCell >Last Name</TableCell>
                   <TableCell >Active</TableCell>
+                  <TableCell >Created At</TableCell>
                   <TableCell >Action</TableCell>
                 </TableRow>
               </TableHead>                  
-              <TableBody className='table'>
+              {/* <TableBody className='table'>
 
               {list.filter(val => {
                 if (search === "") {
@@ -76,7 +74,7 @@ function Clinic() {
                     </TableRow>
 
                 ))}
-                                  </TableBody>
+                                  </TableBody> */}
 
             </Table>
           </Box>
@@ -86,4 +84,5 @@ function Clinic() {
   )
 }
 
-export default Clinic
+export default Staff
+

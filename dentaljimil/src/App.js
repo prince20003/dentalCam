@@ -14,6 +14,11 @@ import * as React from 'react';
 import Error from './component/Error/Error';
 import View from './component/View/View';
 import Update from './component/Update/Update';
+import Main2 from './component/Data/Main2';
+import Patients from './component/Patient/Patients';
+import Staff from './component/Staff/Staff';
+import StaffCreate from './component/Create/StaffCreate';
+import PatientsCreate from './component/Create/PatientsCreate';
 
 function App() {
   // const [loading, setLoading] = React.useState(false);
@@ -32,7 +37,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
 
-        <Route path="/" element={<Main />} >
+        {/* <Route path="/" element={<Main />} >
 
           <Route path="/clinic/create" element={<Create />} />
           <Route path="/clinic" element={<Clinic />} />
@@ -43,10 +48,18 @@ function App() {
           <Route path="/view" element={<View/>} />
           <Route path="/Update" element={<Update/>} />
         </Route>
-        <Route path="/Contact" element={<Cont />} />
+        <Route path="/Contact" element={<Cont />} /> */}
         <Route path="/TermsAndCondition" element={<TermsAndCondiction />} />
         <Route path="/Policy" element={<Privacy />} />
-  
+        <Route path="/" element={<Main2/>} >
+        <Route path="/patients/create" element={<PatientsCreate />} />
+        <Route path="/staff/create" element={<StaffCreate />} />
+
+            <Route path="/patients" element={<Patients/>} />
+            <Route path="/staff" element={<Staff/>} />
+            <Route path="/contactus" element={<Contact />} />
+
+    </Route>
       </Routes>
     </BrowserRouter>
   );

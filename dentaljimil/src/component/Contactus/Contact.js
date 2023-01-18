@@ -1,7 +1,7 @@
 import { Button, Container, Grid,TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system'
 import React from 'react'
-import Main from './StyleCon';
+import Main from '../../Style/StyleCon';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import { useForm } from "react-hook-form";
@@ -28,7 +28,8 @@ function Contact() {
         <Grid item xs={6}>
             <TextField fullWidth variant='outlined' label='First Name'
             name='firstname'
-             {...register("firstname", { required: 'First Name is required'
+             {...register("firstname", { required:  'incalid',
+
                                          
              })}
              error={Boolean(errors.firstname)}
@@ -37,8 +38,7 @@ function Contact() {
         <Grid item xs={6} >
         <TextField fullWidth variant='outlined' label='Last Name'
         name='lastname'
-        {...register("lastname", { required: 'Last Name is required',
-                               pattern: /^[A-Za-z]+$/i
+        {...register("lastname", { required: 'Last Name is required'
                                   })}
         error={Boolean(errors.lastname)}
         helperText={errors.lastname?.message}/>

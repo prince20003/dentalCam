@@ -1,6 +1,6 @@
 import { Box, Button, Container, Typography } from '@mui/material'
 import React from 'react'
-import Main from './Styleerror'
+import Main from '../../Style/Styleerror'
 
 function Error() {
   return (

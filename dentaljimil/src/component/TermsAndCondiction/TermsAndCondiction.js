@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import Termsst from './Styleterms'
+import Termsst from '../../Style/Styleterms'
 import Foot from '../Foot'
 import Lang from './Lang'
 

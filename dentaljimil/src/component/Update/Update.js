@@ -1,7 +1,7 @@
 import { Button, Container, Grid, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system'
 import React,{useState} from 'react'
-import Main from './Styleupdate';
+import Main from '../../Style/Styleupdate';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';

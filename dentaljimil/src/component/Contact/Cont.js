@@ -1,10 +1,10 @@
 import { Button, Container, Grid,  TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system'
 import React from 'react'
-import Main from './Stylecont';
 
 import Foot from '../Foot';
 import { useForm } from "react-hook-form";
+import Main from '../../Style/StyleCon';
 
 function Cont() {
  

@@ -26,7 +26,7 @@ import Menu from '../../Style/StyleMenu';
 // import Cont from '../Contact/Cont';
 const drawerWidth = 280;
 
-function Main(props) {
+function Main2(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -49,20 +49,19 @@ function Main(props) {
         </Box>
 
         <List sx={{marginTop:'15px'}} >
-         <NavLink to='/clinic' className="nav" >
+         <NavLink to='/patients' className="nav" >
          <ListItemButton className="abcd" >
             <ListItemIcon sx={{ padding: '8px 0px 8px 10px', }}>
-              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" class="iconify iconify--maki" width="50" height="22" viewBox="0 0 15 15" className='ff' >
-                <path id="iconify-react-2" fill="currentColor" d="M7 1c-.6 0-1 .4-1 1v4H2c-.6 0-1 .4-1 1v1c0 .6.4 1 1 1h4v4c0 .6.4 1 1 1h1c.6 0 1-.4 1-1V9h4c.6 0 1-.4 1-1V7c0-.6-.4-1-1-1H9V2c0-.6-.4-1-1-1H7z"></path></svg>
-              <Typography className='adminboxicon'>Clinics</Typography>
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="50" height="22"  viewBox="0 0 24 24"  className='ff'><g id="iconify-react-3"><g id="iconify-react-4"><path id="iconify-react-5" fill="currentColor" d="M9 11a4 4 0 1 0-4-4a4 4 0 0 0 4 4Zm8 2a3 3 0 1 0-3-3a3 3 0 0 0 3 3Zm4 7a1 1 0 0 0 1-1a5 5 0 0 0-8.06-3.95A7 7 0 0 0 2 20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1"></path></g></g></svg>              
+            <Typography className='adminboxicon'>Patients</Typography>
             </ListItemIcon>   
           </ListItemButton>
          </NavLink>
-          <NavLink to='/problem'className="nav">
+          <NavLink to='/staff'className="nav">
           <ListItemButton className="abcd"> 
             <ListItemIcon sx={{ padding: '8px 0px 8px 10px', }} >
-              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="50" height="22" viewBox="0 0 24 24" className='ff'><g fill="currentColor"><path d="M14.5 10.33h6.67A.83.83 0 0 0 22 9.5A7.5 7.5 0 0 0 14.5 2a.83.83 0 0 0-.83.83V9.5a.83.83 0 0 0 .83.83zm.83-6.6a5.83 5.83 0 0 1 4.94 4.94h-4.94z"></path><path d="M21.08 12h-8.15a.91.91 0 0 1-.91-.91V2.92A.92.92 0 0 0 11 2a10 10 0 1 0 11 11a.92.92 0 0 0-.92-1z"></path></g></svg>
-              <Typography className='adminboxicon'>Problems</Typography>
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="50" height="22" viewBox="0 0 36 36"  className='ff'><path fill="currentColor" d="M31.25 7.4a43.79 43.79 0 0 1-6.62-2.35a45 45 0 0 1-6.08-3.21L18 1.5l-.54.35a45 45 0 0 1-6.08 3.21A43.79 43.79 0 0 1 4.75 7.4L4 7.59v8.34c0 13.39 13.53 18.4 13.66 18.45l.34.12l.34-.12c.14 0 13.66-5.05 13.66-18.45V7.59Zm-4.57 6.65L15.51 24.9l-6.32-6.33a1.4 1.4 0 0 1 2-2L15.54 21l9.19-9a1.4 1.4 0 1 1 2 2Z" class="clr-i-solid clr-i-solid-path-1"></path><path fill="none" d="M0 0h36v36H0z"></path></svg>              
+            <Typography className='adminboxicon'>Staff</Typography>
             </ListItemIcon>
           </ListItemButton>
           </NavLink>
@@ -157,7 +156,7 @@ function Main(props) {
   );
 }
 
-Main.propTypes = {
+Main2.propTypes = {
   /**
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
@@ -165,4 +164,4 @@ Main.propTypes = {
   window: PropTypes.func,
 };
 
-export default Main;
+export default Main2;
