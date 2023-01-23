@@ -32,6 +32,7 @@ const Slidbarstyle = styled.div`${{
         fontFamily: 'Public Sans, sans - serif',
         fontWeight: '400',
         color: '#637381',
+        marginTop:'10px'
     },
     // '& .listext': {
     //     fontFamily: 'Public Sans, sans - serif',

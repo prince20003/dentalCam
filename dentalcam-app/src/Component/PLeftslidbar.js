@@ -15,6 +15,8 @@ import Header from './Header';
 import { useNavigate, NavLink, Outlet } from 'react-router-dom';
 import Footer from './Footer';
 import Slidbarstyle from '../Style/Slidbarstyle';
+import { useSelector } from 'react-redux';
+import HeaderPatient from './HeaderPatient';
 
 const drawerWidth = 280;
 
@@ -23,7 +25,7 @@ function PLeftslidbar(props) {
   const navigate = useNavigate();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
+  const adminprofile = useSelector((state)=>state.dentalreducers.userinfo)
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -44,12 +46,17 @@ function PLeftslidbar(props) {
             </span>
           </h3>
         </Box>
-        <Box className='admin' sx={{ cursor: 'pointer' }} onClick={handleProfile}>
-          <Box className='ad'>
-            <Typography sx={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', width: '120px' }}>Admin Admin Admin Admin Admin Admin AdminAdminAdmin</Typography>
-            <Typography className='profile'>View Profile</Typography>
+         {
+           adminprofile.map((elem)=>(
+             <Box className='admin' sx={{ cursor: 'pointer' }} onClick={handleProfile}>
+            <Box className='ad'>
+              <Typography sx={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', width: '120px',fontSize:'14px',fontWeight:'700',fontFamily:"Public sans,sans-serif" }}>{elem.userData.username}</Typography>
+              <Typography sx={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', width: '120px', color:'gray',fontSize:'12px',fontFamily:"Public sans,sans-serif"}}>{elem.userData.email}</Typography>
+              <Typography className='profile'>View Profile</Typography>
+            </Box>
           </Box>
-        </Box>
+           ))
+         }
         <List className='act'>
           <NavLink to='/patients' style={{ textDecoration: 'none' }}>
             <ListItemButton className='listitem'>
@@ -112,7 +119,7 @@ function PLeftslidbar(props) {
               <MenuIcon />
             </IconButton>
             <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-end', alignItem: 'center' }}>
-              <Header sx={{ position: 'fixed' }} />
+              <HeaderPatient sx={{ position: 'fixed' }} />
             </Box>
           </Toolbar>
         </AppBar>

@@ -1,9 +1,8 @@
+import { combineReducers } from "redux";
 import dentalreducers from "./dentalreducers";
 
-import { combineReducers } from "redux";
-
 const rootReducer = combineReducers({
-    dentalreducers
+    dentalreducers,
 })
 
 export default rootReducer

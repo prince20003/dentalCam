@@ -1,25 +1,48 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
-import { Button, Card, Checkbox, FormControl, FormControlLabel, FormHelperText, IconButton, InputAdornment, InputLabel, OutlinedInput, Typography } from '@mui/material';
+import { Button, Card, Checkbox, FormControl, FormControlLabel, IconButton, InputAdornment, InputLabel, OutlinedInput, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { Container } from '@mui/system';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Footer from './Footer'
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 import AB from '../Style/Loginstyle';
 import Butt from '../Style/Buttonstyle';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { LoginD } from '../actions';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  // const [values, setValues] = useState({
-  //   username: '',
-  //   password: ''
-  // })
 
-  const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'all', });
-  const onSubmit = (data) => console.log(data);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [val, setVal] = useState({
+    username: '',
+    password: ''
+  })
+  const list = useSelector((state) => state.dentalreducers.list)  
+  const user = useSelector((state) => state.dentalreducers.LoginData) 
+   useEffect(()=>{
+    // if(user[0].data.username !== ""  && user[0].data.username === "admin"){
+    //   navigate('/clinics')
+    // } 
+    // else if (user[0].data.username !== ""){
+    //   navigate('/patients')
+    // }
+    for (let i = 0; i < list.length; i++) {
+      if (user[0].data.username === "admin"  && user[0].data.username!=="") {
+        navigate('/clinics')
+      }
+       else if ( user[0].data.username!== "" && user[0].data.username === list[i].data.username && user[0].data.password === list[i].data.password ) {
+        navigate('/patients')
+      }
+    }
+  })
+
+  // const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'all', });
+  // const onSubmit = (data) => console.log(data);
 
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -28,15 +51,40 @@ const LoginPage = () => {
     event.preventDefault();
   };
 
-
-  // const handleChange = (e) => {
-  //   setValues({ ...values, [e.target.name]: e.target.value })
+  // const onSubmit = () => {
+  //    dispatch(LoginD(val))
+  //    setVal({
+  //     username:'',
+  //     password:''
+  //    })
+  //    navigate('/')
   // }
-
-  // const handleLogin = (e) => {
-  //   e.preventDefault();
-  //   console.log("click")
-  // }
+  const handleLogin = () => {
+     for (let i = 0; i < list.length; i++) {
+      if (val.username === "admin" && val.password === "Test@123") {
+        navigate('/clinics')
+        break;
+      }
+       else if (val.username === list[i].data.username && val.password === list[i].data.password) {
+        navigate('/patients')
+        break;
+      }
+      else if(i === list.length-1 && ((val.username !== list[i].data.username && val.password !== list[i].data.password ) ||
+      (val.username === list[i].data.username && val.password !== list[i].data.password )||
+      (val.username !== list[i].data.username && val.password === list[i].data.password) ||
+        (val.username !== "admin" && val.password !== "Test@123") ||
+        (val.username === "admin" && val.password !== "Test@123") ||
+        (val.username !== "admin" && val.password === "Test@123")
+        ) ){
+       alert('so')
+    }
+    }
+    dispatch(LoginD(val))
+    setVal({
+      username:'',
+      password:''
+     })
+  }
 
   return (
     <>
@@ -56,16 +104,21 @@ const LoginPage = () => {
               <Box className='de'>
                 <Typography variant='h4' className='sign' >Sign in to DentalCam</Typography>
               </Box>
-              <form autoComplete='off' onSubmit={handleSubmit(onSubmit)} >
+              {/* <form autoComplete='off' onSubmit={handleSubmit(onSubmit)} > */}
+              <form autoComplete='off' >
                 <Box className='formdata'>
                   <TextField id="outlined-basic" sx={{ borderRadius: '8px' }} label="Username" variant="outlined" color="success" name='username'
-                    {...register("username", { required: 'User Name is required' })}
-                    error={Boolean(errors.username)}
-                    helperText={errors.username?.message}
+                    // {...register("username", { required: 'User Name is required' })}
+                    // error={Boolean(errors.username)}
+                    // helperText={errors.username?.message}
+                    value={val.username}
+                    onChange={(e) => setVal({...val,username:e.target.value})}
                   />
                   <FormControl sx={{ marginTop: '24px', borderRadius: '8px' }} variant="outlined" color="success" name='password'
-                    {...register("password", { required: 'Password is required' })}
-                    error={Boolean(errors.password)}
+                    // {...register("password", { required: 'Password is required' })}
+                    // error={Boolean(errors.password)}
+                    value={val.username}
+                    onChange={(e) => setVal({...val,password:e.target.value})}
                   >
                     <InputLabel htmlFor="outlined-adornment-password" name='password'>Password</InputLabel>
                     <OutlinedInput
@@ -73,7 +126,7 @@ const LoginPage = () => {
                       type={showPassword ? 'text' : 'password'}
                       name='password'
                       label="Password"
-                      
+                    
                       endAdornment={
                         <InputAdornment position="end">
                           <IconButton
@@ -88,11 +141,11 @@ const LoginPage = () => {
                         </InputAdornment>
                       }
                     />
-                    <FormHelperText>{errors.password?.message}</FormHelperText>
+                    {/* <FormHelperText>{errors.password?.message}</FormHelperText> */}
                   </FormControl>
                   <FormControlLabel className='check' control={<Checkbox defaultChecked sx={{ '&.Mui-checked': { color: '#0B3379' }, paddingLeft: '0px' }} />} label="Remember me" />
                   <Butt>
-                    <Button variant="contained" className='loginb' fullWidth type='Submit' >Login</Button>
+                    <Button variant="contained" className='loginb' fullWidth onClick={handleLogin} >Login</Button>
                   </Butt>
                 </Box>
               </form>

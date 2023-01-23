@@ -21,11 +21,7 @@ function Contactus() {
 
 
 
-
-
-
     const handleBack = () => {
-
         navigate('/clinics')
     }
     const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'all', });

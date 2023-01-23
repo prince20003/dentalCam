@@ -1,45 +1,34 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
+import Userstyle from '../Style/Userstyle'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Button, Container, FormControl, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from '@mui/material';
+import { Button, Container, FormControl, Grid, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system'
+import IconButton from '@mui/material/IconButton';
 import Butt from '../Style/Buttonstyle';
-import { useNavigate } from 'react-router-dom';
-import Userstyle from '../Style/Userstyle';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux"
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { useDispatch } from 'react-redux';
-import { addstaff } from '../actions';
+import { editStaff } from '../actions';
 
-function AddStaff() {
-    const navigate = useNavigate()
+
+function UpdateStaff() {
+    const location = useLocation(); 
     const dispatch = useDispatch();
-
-    const [staffData,setStaffData] = useState({
-        firstname : "",
-        lastname : "",
-        username : "",
-        password : '',
+    const navigate = useNavigate();
+    const [updates, setUpdates] = useState({
+        firstname: location.state.staffDATA.firstname,
+        lastname: location.state.staffDATA.lastname,
+        username: location.state.staffDATA.username,
+        password: location.state.staffDATA.password,
     })
-   
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-   
-    const handleStaff = () =>{
-        dispatch(addstaff(staffData))
-        setStaffData({
-        firstname : "",
-        lastname : "",
-        username : "",
-        password : '',
-        }) 
-    }
-
     const handleBack = () => {
         navigate('/staffs')
     }
-
     return (
         <>
             <Userstyle>
@@ -49,26 +38,26 @@ function AddStaff() {
                         <Box className='mainbo'>
                             <ArrowBackIcon className='back' onClick={handleBack} sx={{ cursor: 'pointer' }} />
                             <Box className='mainbox'>
-                                <Typography variant='h1' className='createcliniclogo'>Create Staffs</Typography>
+                                <Typography variant='h1' className='createcliniclogo'>Update Staffs</Typography>
                                 <Box sx={{ width: '100%', marginTop: '28px' }}>
                                     <form autoComplete='off'>
                                         <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 12, md: 12 }}>
                                             <Grid item xs={6} >
-                                                <TextField sx={{ width: '100%', }} variant='outlined' label='First Name' value={staffData.firstname} onChange={(e)=>setStaffData({...staffData,firstname:e.target.value})} />
+                                                <TextField fullWidth variant='outlined' label='First Name' value={updates.firstname} onChange={(e) => setUpdates({ ...updates, firstname: e.target.value })}/>
                                             </Grid>
                                             <Grid item xs={6}>
-                                                <TextField sx={{ width: '100%' }} variant='outlined' label='Last Name' value={staffData.lastname} onChange={(e)=>setStaffData({...staffData,lastname:e.target.value})}/>
+                                                <TextField fullWidth variant='outlined' label='Last Name' value={updates.lastname} onChange={(e) => setUpdates({ ...updates, lastname: e.target.value })}/>
                                             </Grid>
                                             <Grid item xs={6}>
-                                                <TextField sx={{ width: '100%' }} variant='outlined' label='User Name' value={staffData.username} onChange={(e)=>setStaffData({...staffData,username:e.target.value})} />
+                                                <TextField variant='outlined' label='User Name'  fullWidth value={updates.username} onChange={(e) => setUpdates({ ...updates, username: e.target.value })} />
                                             </Grid>
                                             <Grid item xs={6}>
-                                                <FormControl sx={{ width: '100%' }} variant="outlined"  onChange={(e)=>setStaffData({...staffData,password:e.target.value})}>
+                                                <FormControl sx={{ width: '100%' }} variant="outlined"  onChange={(e)=>setUpdates({...updates,password:e.target.value})}>
                                                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                                     <OutlinedInput
                                                         id="outlined-adornment-password"
                                                         type={showPassword ? 'text' : 'password'}
-                                                        value={staffData.password}
+                                                        value={updates.password}
                                                         endAdornment={
                                                             <InputAdornment position="end">
                                                                 <IconButton
@@ -86,7 +75,7 @@ function AddStaff() {
                                                 </FormControl>         </Grid>
                                             <Grid item xs={12}>
                                                 <Butt>
-                                                    <Button variant='contained' fullWidth className='loginb' onClick={handleStaff}>Create</Button>
+                                                    <Button variant='contained' fullWidth className='loginb' onClick={()=>dispatch(editStaff(updates,location.state.sid))}>Update</Button>
                                                 </Butt>
                                             </Grid>
                                         </Grid>
@@ -99,8 +88,11 @@ function AddStaff() {
 
 
             </Userstyle>
+
+
+
         </>
     )
 }
 
-export default AddStaff
+export default UpdateStaff

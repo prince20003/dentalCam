@@ -13,13 +13,14 @@ import PersonIcon from '@mui/icons-material/Person';
 import { Button } from '@mui/material';
 import Country from './Country';
 import { NavLink, useNavigate } from 'react-router-dom'
-import dentalreducers from '../reducers/dentalreducers';
+import { useDispatch, useSelector } from 'react-redux';
+import dentalreducers from '../reducers/dentalreducers'
 import { logout } from '../actions';
-import { useDispatch } from 'react-redux';
 
-function Header() {
+function HeaderPatient() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const adminprofile = useSelector((state)=>state.dentalreducers.userinfo)
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -28,10 +29,11 @@ function Header() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+ 
     const handleLogout = () =>{
         console.log("click")
         dispatch(logout())
-        navigate('/login')    
+        navigate('/login')
     }
 
 
@@ -90,7 +92,14 @@ function Header() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
                 <Headerstyle>
-                <Typography className='admin'>Admin Admin</Typography>
+                   {
+                    adminprofile.map((elem)=>(
+                        <>
+                        <Typography className='admin1'>{elem.userData.username}</Typography>
+                        <Typography sx={{marginTop:'5px',color:'gray',fontSize:'12px',padding:"0px 30px"}}>{elem.userData.email}</Typography>
+                        </>
+                    ))
+                   }
                     <Divider sx={{ margin: '8px 0px' }} />
                     <NavLink to='/profile' style={{ textDecoration: 'none', color:'black' }}>
                         <MenuItem className='menu'>
@@ -109,4 +118,4 @@ function Header() {
     )
 }
 
-export default Header
+export default HeaderPatient

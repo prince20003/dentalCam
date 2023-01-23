@@ -9,11 +9,11 @@ import { deleteUser } from '../actions'
 function Data() {
   const [id, setId] = useState("")
   const [search, setSearch] = useState("")
-  const [expiryDate, setExpiryDate] = useState("")
-  console.log(expiryDate)
+  // const [expiryDate, setExpiryDate] = useState("")
+  // console.log(expiryDate)
 
   const list = useSelector((state) => state.dentalreducers.list)
-  console.log(list.length)
+  // console.log(list.length)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleCreate = () => {
@@ -83,10 +83,10 @@ function Data() {
                     }
                   }).map((elem) => {
                     const ab = elem.data.date
-                    console.log(ab)
+                    // console.log(ab)
                     const datet = new Date();
                     const currenDate = datet.getFullYear() + '-' + (datet.getMonth() + 1) + '-' + datet.getDate();
-                    console.log(currenDate)
+                    // console.log(currenDate)
                     if (ab === currenDate) {
                       console.log("yes")
                     }

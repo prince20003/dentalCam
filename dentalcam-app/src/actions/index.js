@@ -45,3 +45,83 @@ export const addProblem = (problem) =>{
         }
     }
 }
+
+
+export const LoginD = (val) =>{
+    return {
+        type : "LOGIN",
+        payload : {
+            val,
+        }
+    }
+}
+
+export const Addpatient = (patientdata) =>{
+    console.log(patientdata)
+    return {
+        type : "ADD_PATIENT",
+        payload :{
+            ppid : new Date().getTime().toString(),
+            pdata : patientdata
+        }
+    }
+}
+
+export const editPatient = (updatep,pid) =>{
+    return {
+        type : "EDIT_PATI",
+        payload : {
+            idd1 : pid,
+           name1: updatep
+        }
+    }
+}
+
+
+export const patientdele = (pid) =>{
+   return{
+    type : "DELE_PATI",
+    payload :{
+        pid,
+    }
+   }
+}
+
+export const addstaff = (staffData) =>{
+    return{
+        type : 'ADD_STAFF',
+        payload : {
+            spid : new Date().getTime().toString(),
+            staffdata : staffData
+        }
+    }
+}
+
+export const editStaff = (updates,sid) =>{
+    return{
+        type : 'EDIT_STAFF',
+        payload : {
+            idd2 : sid,
+           name2: updates
+        }
+    }
+}
+
+export const staffdele = (sid) =>{
+    return{
+     type : "DELE_STAFF",
+     payload :{
+        sid,
+     }
+    }
+ }
+
+
+
+
+
+export const logout = () =>{
+    return{
+        type : "LOGOUT",
+    }
+} 

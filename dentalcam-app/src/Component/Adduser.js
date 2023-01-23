@@ -25,6 +25,7 @@ function Adduser() {
         password: "",
         date: "",
         plan: "",
+        role:"admin_patients"
     })
     console.log(userData)
 
@@ -67,11 +68,12 @@ function Adduser() {
                                                 <TextField sx={{ width: '100%' }} variant='outlined' label='User Name' value={userData.username} onChange={(e) => setUserData({ ...userData, username: e.target.value })} />
                                             </Grid>
                                             <Grid item xs={6}>
-                                                <FormControl sx={{ width: '100%' }} variant="outlined" value={userData.password} onChange={(e) => setUserData({ ...userData, password: e.target.value })}>
+                                                <FormControl sx={{ width: '100%' }} variant="outlined"  onChange={(e) => setUserData({ ...userData, password: e.target.value })}>
                                                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                                     <OutlinedInput
                                                         id="outlined-adornment-password"
                                                         type={showPassword ? 'text' : 'password'}
+                                                        value={userData.password}
                                                         endAdornment={
                                                             <InputAdornment position="end">
                                                                 <IconButton

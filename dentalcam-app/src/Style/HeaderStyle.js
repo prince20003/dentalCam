@@ -9,6 +9,13 @@ const Headerstyle = styled.div({
         fontWeight:'600',
         fontFamily:'Public Sans,sans-serif',
     },
+    '& .admin1':{
+        margin:'5px 0',
+        padding:'0 30px',
+        fontSize:'16px',
+        fontWeight:'700',
+        fontFamily:'Public Sans,sans-serif',
+    },
     '& .menu':{
         fontSize:'14px',
         fontFamily:'Public Sans, sans-serif',
