@@ -10,22 +10,25 @@ import TableRow from '@mui/material/TableRow';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+
 import DialogTitle from '@mui/material/DialogTitle';
 import { useDispatch, useSelector } from 'react-redux';
-import { prob } from '../../Action';
+import { pbdele, prob } from '../../Action';
 
 function Problem() {
   const dispatch =useDispatch()
   const PR = useSelector((state) => state.Dental.PR)
-
+ const [id,setId]=useState("")
     const [open, setOpen] = React.useState(false);
+    const [openPR, setOpenPR] = React.useState(false);
   const[problem,setProblem]=useState('')
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleSave = () => {
     dispatch(prob(problem))
-
+    setProblem('')
     setOpen(false);
 
   };
@@ -33,7 +36,22 @@ function Problem() {
     setOpen(false);
 
   };
+  const handlePROpen = (id) => {
+    setId(id)
+    setOpenPR(true);}
 
+  const handlePRClose = () => {
+    setOpenPR(false);
+  };
+
+  const handlePRClosel = () => {
+    
+    
+    dispatch(pbdele(id))
+    setOpenPR(false);
+    
+
+  }
       
   return (
    <> <Main>
@@ -60,7 +78,7 @@ function Problem() {
            <TableCell component="th" scope="row">
              {row.data}
            </TableCell>
-           <TableCell><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" data-testid="DeleteIcon" style={{color:'red',cursor:'pointer'}}><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
+           <TableCell><svg onClick={()=>handlePROpen(row.id)} class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" data-testid="DeleteIcon" style={{color:'red',cursor:'pointer'}}><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
 </TableCell>
            
          </TableRow>
@@ -96,6 +114,25 @@ function Problem() {
 
           <Button className='Createbtn1'onClick={handleSave} variant="contained"><b>Save</b></Button>
           </Main>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={openPR}
+        onClose={handlePRClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+       
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+         Are you sure you want to clearall?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handlePRClose}>Cancel</Button>
+          <Button onClick={handlePRClosel} autoFocus>
+            Clear All
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

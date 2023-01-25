@@ -19,10 +19,16 @@ import Patients from './component/Patient/Patients';
 import Staff from './component/Staff/Staff';
 import StaffCreate from './component/Create/StaffCreate';
 import PatientsCreate from './component/Create/PatientsCreate';
+import { useSelector } from 'react-redux';
+import Profilepatints from './component/Profie/Profilepatients';
+import UpdatePatients from './component/Update/Updatepaitents';
+import Patientsview from './component/View/Patientsview';
+import Updatestaff from './component/Update/Updatestaff';
 
 function App() {
   // const [loading, setLoading] = React.useState(false);
-
+  const ab = useSelector((state) => state.Dental.logindata)
+  const info = useSelector((state) => state.Dental.info)
   // React.useEffect(() => {
   //   setLoading(true)
   //   setTimeout(() => {
@@ -35,31 +41,40 @@ function App() {
     <BrowserRouter>
 
       <Routes>
-        <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<Login />} />
 
-        {/* <Route path="/" element={<Main />} >
 
-          <Route path="/clinic/create" element={<Create />} />
-          <Route path="/clinic" element={<Clinic />} />
-          <Route path="/problem" element={<Problem />} />
+        {ab[0].data.username === 'admin' && ab[0].data.password === "Test@123" ?
+          <Route path='/' element={<Main />} >
+            <Route path="/clinic/create" element={<Create />} />
+            <Route path="/clinic" element={<Clinic />} />
+            <Route path="/problem" element={<Problem />} />
+            <Route path="/contactus" element={<Contact />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/*" element={<Error />} />
+            <Route path="/view" element={<View />} />
+            <Route path="/Update" element={<Update />} />
+          </Route>
+          :<Route path='/' element={<Main2 />} >
+          <Route path="/patients/create" element={<PatientsCreate />} />
+          <Route path="/staff/create" element={<StaffCreate />} />
+          <Route path="/profile" element={<Profilepatints />} />
+          <Route path="/patients" element={<Patients />} />
+          <Route path="/updatepatients" element={<UpdatePatients />} />
+          <Route path="/staff" element={<Staff />} />
+          <Route path="/Updatestaff" element={<Updatestaff />} />
           <Route path="/contactus" element={<Contact />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/*" element={<Error />} />
-          <Route path="/view" element={<View/>} />
-          <Route path="/Update" element={<Update/>} />
-        </Route>
-        <Route path="/Contact" element={<Cont />} /> */}
+          <Route path="/patientsview" element={<Patientsview />} />
+
+        </Route> 
+        }
+
+
+
+        <Route path="/Contact" element={<Cont />} />
         <Route path="/TermsAndCondition" element={<TermsAndCondiction />} />
         <Route path="/Policy" element={<Privacy />} />
-        <Route path="/" element={<Main2/>} >
-        <Route path="/patients/create" element={<PatientsCreate />} />
-        <Route path="/staff/create" element={<StaffCreate />} />
-
-            <Route path="/patients" element={<Patients/>} />
-            <Route path="/staff" element={<Staff/>} />
-            <Route path="/contactus" element={<Contact />} />
-
-    </Route>
       </Routes>
     </BrowserRouter>
   );

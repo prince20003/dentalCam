@@ -73,21 +73,21 @@ height:'100vh'
  
 }
 @media (max-width:769px) and (min-width:428px){
-  '& .mainbox':{
-    width:'100%',
-    maxWidth: '464px',
-    height:'681px',
+  .mainbox{
+  display:none
     
   }
 }
 @media (max-width:427px) and (min-width:377px){
-  .table{
-    width:390px ;
-  }
+  .mainbox{
+    display:none
+      
+    }
 }
 @media (max-width:376px) and (min-width:323px){
-  .table{
-    width:335px  
-  }
+  .mainbox{
+    display:none
+      
+    }}
 `
 export default Logmain

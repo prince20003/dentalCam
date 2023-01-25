@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Prof from '../../Style/Styleprofile'
 
 
-function Profile() {
+function Profilepatints() {
     const info = useSelector((state) => state.Dental.info)
 console.log(info[0].data);
   return (
@@ -21,12 +21,12 @@ console.log(info[0].data);
                { info.map((row)=>(
                                     <TableBody>
                                         <TableRow>
-                                            <TableCell>First Name</TableCell>
-                                            <TableCell>{row.data.Username}</TableCell>
+                                            <TableCell>Clinic Name</TableCell>
+                                            <TableCell>{row.data.Clinicname}</TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>Last Name</TableCell>
-                                            <TableCell>{row.data.Username}</TableCell>
+                                            <TableCell>Email</TableCell>
+                                            <TableCell>{row.data.Email}</TableCell>
                                         </TableRow>
                                         <TableRow>
                                             <TableCell>Plan-Name</TableCell>
@@ -53,4 +53,4 @@ console.log(info[0].data);
   )
 }
 
-export default Profile
+export default Profilepatints

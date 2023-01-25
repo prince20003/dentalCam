@@ -11,15 +11,17 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useDispatch } from 'react-redux';
-import {  patientscreate } from '../../Action';
+import {  patientscreate, updatepatients } from '../../Action';
+import { useLocation } from 'react-router-dom';
 
-function PatientsCreate() {
+function UpdatePatients() {
   const dispatch = useDispatch()
+  const up=useLocation()
 
   const [data, setData] = useState({
-    Firstname:'',
-    Lastname:'',
-    Dateofbirth:'',
+    Firstname:up.state.pdata.Firstname,
+    Lastname:up.state.pdata.Lastname,
+    Dateofbirth:up.state.pdata.Dateofbirth,
 
     
   })
@@ -33,7 +35,7 @@ function PatientsCreate() {
        <Box className='mainbo' >
        <ArrowBackIcon className='back'/>
        <Box className='mainbox'>
-       <Typography variant='h1' className='createcliniclogo'>Create Patients </Typography>
+       <Typography variant='h1' className='createcliniclogo'>Update Patients </Typography>
 
        <Box sx={{ width: '100%',marginTop:'28px' }}>
         
@@ -53,10 +55,10 @@ function PatientsCreate() {
         </Grid>
         
          <Grid item xs={12}>
-         <Button className='Createbtn'  variant="contained" onClick={() => dispatch(patientscreate(data),setData({Firstname:'',
+         <Button className='Createbtn'  variant="contained" onClick={() => dispatch(updatepatients(up.state.pid,data),setData({Firstname:'',
     Lastname:'',
     Dateofbirth:'',
-    }))}><b>Create</b></Button>
+    }))}><b>Update</b></Button>
 
         </Grid>
       </Grid>
@@ -70,4 +72,4 @@ function PatientsCreate() {
   )
 }
 
-export default PatientsCreate
+export default UpdatePatients

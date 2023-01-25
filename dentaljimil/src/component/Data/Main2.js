@@ -15,6 +15,8 @@ import MenubarLogout from './MenubarLogout';
 import {  NavLink, Outlet } from 'react-router-dom';
 import Foot from '../Foot';
 import Menu from '../../Style/StyleMenu';
+import { useSelector } from 'react-redux';
+import MainLogout from './MainLogout';
 // import Table from '@mui/material/Table';
 // import TableBody from '@mui/material/TableBody';
 // import TableCell from '@mui/material/TableCell';
@@ -29,6 +31,7 @@ const drawerWidth = 280;
 function Main2(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const info = useSelector((state) => state.Dental.info)
 
 
 
@@ -42,10 +45,12 @@ function Main2(props) {
         <Box className='menu'>
           <img className='Menulogo' alt='' src='https://dentalcam.app/static/logo.png' />
           <h2 style={{ textAlign: 'center', margin: '0 0' }}><span style={{ fontFamily: 'Public Sans,sans-serif', background: 'linear-gradient(90deg, rgb(171, 48, 177) 0%, rgb(91, 114, 180) 70%)', WebkitBackgroundClip: 'text', color: 'transparent', fontSize: '18.6px' }}>DentalCam</span></h2>
-          <NavLink to='/profile'className='adminbox'>
-            <Typography sx={{ fontSize: '14px', fontFamily: 'Public Sans,sans-serif',width:'100px', fontWeight: '600',textOverflow: 'ellipsis',overflow: 'hidden',whiteSpace: 'nowrap' }}>Admin  Admin admin adimn</Typography>
+          { info.map((row)=>(    <NavLink to='/profile'className='adminbox' style={{height:'110%'}}>
+            <Typography sx={{ fontSize: '14px', fontFamily: 'Public Sans,sans-serif',width:'100px', fontWeight: '600',textOverflow: 'ellipsis',overflow: 'hidden',whiteSpace: 'nowrap' }}>{row.data.Username}
+            </Typography>
+            <Typography sx={{ fontSize: '12px', marginTop: '0px', color: 'gray', fontFamily: 'Public Sans,sans-serif' }}>{row.data.Email}</Typography>
             <Typography sx={{ fontSize: '12px', marginTop: '5px', color: 'gray', fontFamily: 'Public Sans,sans-serif' }}>View Profile</Typography>
-          </NavLink>
+          </NavLink>))}
         </Box>
 
         <List sx={{marginTop:'15px'}} >
@@ -108,7 +113,7 @@ function Main2(props) {
               <MenuIcon />
             </IconButton>
             <Box sx={{width:'100%',display:'flex',justifyContent:'flex-end',alignItems:'center',}}>
-            <MenubarLogout/>
+            <MainLogout/>
 
             </Box>
           </Toolbar>
