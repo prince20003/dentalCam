@@ -38,7 +38,7 @@ function Profile() {
                                         </TableRow>
                                         <TableRow>
                                             <TableCell className='cell'>Password</TableCell>
-                                            <TableCell className='cell'></TableCell>
+                                            <TableCell className='cell'>Test@123</TableCell>
                                         </TableRow>
                                     </TableBody>
                                   </Table>

@@ -38,6 +38,12 @@ function Staff() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+   const date = new Date()
+   const dd = date.getDate();
+   const mm = date.getMonth()+1;
+   const year = date.getFullYear();
+   const created = dd + "-" + mm + "-" + year 
+   
 
   return (
     <>
@@ -78,7 +84,7 @@ function Staff() {
                       <TableCell>{elem.staffDATA.firstname}</TableCell>
                       <TableCell>{elem.staffDATA.lastname}</TableCell>
                       <TableCell>{}</TableCell>
-                      <TableCell>{}</TableCell>
+                      <TableCell>{created}</TableCell>
                       <TableCell>{
                             <>
                               {/* <Link to='/patients/view' state={elem} style={{marginRight:'20px'}}> <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" data-testid="CollectionsIcon" style={{color:'#0B3379'}}><path d="M22 16V4c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2zm-11-4 2.03 2.71L16 11l4 5H8l3-4zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z"></path></svg></Link> */}

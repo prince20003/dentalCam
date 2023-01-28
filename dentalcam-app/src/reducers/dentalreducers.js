@@ -4,7 +4,8 @@ const initialData = {
     LoginData: [],
     userinfo: [],
     PatientDATA: [],
-    Staff : [],
+    Staff: [],
+    photos: [],
 }
 
 const dentalreducers = (state = initialData, action) => {
@@ -90,7 +91,7 @@ const dentalreducers = (state = initialData, action) => {
             }
 
         case "ADD_PATIENT": {
-            const { pdata,ppid } = action.payload
+            const { pdata, ppid } = action.payload
             for (let j = 0; j < state.list.length; j++) {
                 if (state.userinfo[0].id === state.list[j].id) {
                     return {
@@ -100,13 +101,14 @@ const dentalreducers = (state = initialData, action) => {
                             {
                                 id: state.list[j].id,
                                 patientDAta: pdata,
-                                pid:ppid,
+                                pid: ppid,
+                                photos: []
                             }]
                     }
                 }
             }
         }
-        break;
+            break;
         case "DELE_PATI": {
             const { pid } = action.payload
             const dele = state.PatientDATA.filter((ele) => ele.pid !== pid)
@@ -116,7 +118,7 @@ const dentalreducers = (state = initialData, action) => {
             }
         }
         case "DELE_STAFF": {
-            const {sid } = action.payload
+            const { sid } = action.payload
             const dele1 = state.Staff.filter((ele) => ele.sid !== sid)
             return {
                 ...state,
@@ -157,22 +159,22 @@ const dentalreducers = (state = initialData, action) => {
             }
             break;
 
-        case "LOGOUT" :  {
+        case "LOGOUT": {
             state.LoginData[0].data.username = "";
             state.LoginData[0].data.password = "";
             return {
                 ...state,
-                LoginData : [
+                LoginData: [
                     ...state.LoginData,
                 ],
-                userinfo : []
+                userinfo: []
             }
         }
 
-        case "ADD_STAFF" :{
-            const {staffdata,spid} = action.payload
+        case "ADD_STAFF": {
+            const { staffdata, spid } = action.payload
 
-            for(let p=0;p<state.list.length;p++){
+            for (let p = 0; p < state.list.length; p++) {
                 if (state.userinfo[0].id === state.list[p].id) {
                     return {
                         ...state,
@@ -181,14 +183,58 @@ const dentalreducers = (state = initialData, action) => {
                             {
                                 id: state.list[p].id,
                                 staffDATA: staffdata,
-                                sid:spid,
+                                sid: spid,
                             }]
                     }
                 }
             }
         }
-        break;   
+            break;
 
+        case "UPLOAD_IMG": {
+            const { iid, image, imid } = action.payload
+            for (let p = 0; p < state.PatientDATA.length; p++) {
+                if (imid === state.PatientDATA[p].pid) {
+                    // console.log(imid)
+                    let ph = {
+                        images: image,
+                        imgid: iid
+                    }
+                    console.log(state.PatientDATA[p].pid)
+                    // console.log(image)
+                    state.PatientDATA[p].photos.push(ph)
+                    return {
+                        ...state,
+                        PatientDATA: [
+                            ...state.PatientDATA
+                        ]
+                    }
+                }
+            }
+        }
+            break;
+
+        case 'IMG_DELE': {
+            const { elem, displayimg, imdid } = action.payload
+            console.log(elem, "reducer-elem")
+            for (let d = 0; d < state.PatientDATA.length; d++) {
+                console.log(displayimg, "displayimg-reducer");
+                const dele23 = displayimg.filter((ele) => ele.imgid !== elem.imgid);
+                console.log(imdid,"imdid");
+                console.log(state.PatientDATA[d].pid,"state.PatientDATA[d].pid")
+                // if (imdid === state.PatientDATA[d].pid) {
+                if (state.PatientDATA[d].pid === imdid) {
+                    state.PatientDATA[d].photos = dele23
+                }
+            }
+            return {
+                ...state,
+                PatientDATA: [
+                    ...state.PatientDATA,
+                ]
+            }
+        }
+        //   break;
 
         default: return state;
     }

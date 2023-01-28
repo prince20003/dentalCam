@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Button, Container, Grid, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -14,10 +16,20 @@ import { useNavigate } from 'react-router-dom';
 import { addUser } from '../actions';
 import { useDispatch } from "react-redux"
 import Userstyle from '../Style/Userstyle';
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
 function Adduser() {
     const dispatch = useDispatch();
     const navigate = useNavigate()
+    const [open, setOpen] = React.useState(false);
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        setOpen(false);
+      };
     const [userData, setUserData] = useState({
         clinicname: "",
         email: "",
@@ -25,24 +37,38 @@ function Adduser() {
         password: "",
         date: "",
         plan: "",
-        role:"admin_patients"
+        role: "admin_patients"
     })
-    console.log(userData)
-
-    // const list = useSelector((state) => state.dentalreducers.list)
-
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-    // const [age, setAge] = React.useState('');
     const handleChange = (event) => {
         setUserData({ ...userData, plan: event.target.value });
     };
 
     const handleBack = () => {
         navigate('/clinics')
+    }
+
+    const handlecreate = () =>{
+      if(userData.clinicname === "" || userData.email === "" || userData.password === "" || userData.date === "" || userData.plan === "" ){
+        setOpen(true)
+      }
+    else{
+        dispatch(addUser(userData),
+        setUserData({
+            clinicname: "",
+            email: "",
+            username: "",
+            password: "",
+            date: "",
+            plan: "",
+        }))
+    }
+        
+
     }
 
     return (
@@ -68,7 +94,7 @@ function Adduser() {
                                                 <TextField sx={{ width: '100%' }} variant='outlined' label='User Name' value={userData.username} onChange={(e) => setUserData({ ...userData, username: e.target.value })} />
                                             </Grid>
                                             <Grid item xs={6}>
-                                                <FormControl sx={{ width: '100%' }} variant="outlined"  onChange={(e) => setUserData({ ...userData, password: e.target.value })}>
+                                                <FormControl sx={{ width: '100%' }} variant="outlined" onChange={(e) => setUserData({ ...userData, password: e.target.value })}>
                                                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                                     <OutlinedInput
                                                         id="outlined-adornment-password"
@@ -99,8 +125,6 @@ function Adduser() {
                                                         labelId="demo-simple-select-label"
                                                         id="demo-simple-select"
                                                         value={userData.plan}
-                                                        // value={age} 
-                                                        // onChange={(e) => setUserData(e.target.value)}
                                                         label="Plan"
                                                         onChange={handleChange}
                                                     >
@@ -112,18 +136,16 @@ function Adduser() {
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Butt>
-                                                    <Button variant='contained' fullWidth className='loginb' onClick={() => dispatch(addUser(userData), setUserData({
-                                                        clinicname: "",
-                                                        email: "",
-                                                        username: "",
-                                                        password: "",
-                                                        date: "",
-                                                        plan: "",
-                                                    }))}>Create</Button>
+                                                    <Button variant='contained' fullWidth className='loginb' onClick={() => handlecreate()}>Create</Button>
                                                 </Butt>
                                             </Grid>
                                         </Grid>
                                     </form>
+                                    <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                                        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                                            Please Fill All The Filed
+                                        </Alert>
+                                    </Snackbar>
                                 </Box>
                             </Box>
                         </Box>

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import { Button, Card, Checkbox, FormControl, FormControlLabel, IconButton, InputAdornment, InputLabel, OutlinedInput, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import { Container } from '@mui/system';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -13,8 +15,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LoginD } from '../actions';
 import { useNavigate } from 'react-router-dom';
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 const LoginPage = () => {
+  const [open, setOpen] = React.useState(false);
+  const [op, setOp] = React.useState(false);
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
 
+    setOpen(false);
+    setOp(false)
+  };
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -22,20 +36,14 @@ const LoginPage = () => {
     username: '',
     password: ''
   })
-  const list = useSelector((state) => state.dentalreducers.list)  
-  const user = useSelector((state) => state.dentalreducers.LoginData) 
-   useEffect(()=>{
-    // if(user[0].data.username !== ""  && user[0].data.username === "admin"){
-    //   navigate('/clinics')
-    // } 
-    // else if (user[0].data.username !== ""){
-    //   navigate('/patients')
-    // }
+  const list = useSelector((state) => state.dentalreducers.list)
+  const user = useSelector((state) => state.dentalreducers.LoginData)
+  useEffect(() => {
     for (let i = 0; i < list.length; i++) {
-      if (user[0].data.username === "admin"  && user[0].data.username!=="") {
+      if (user[0].data.username === "admin" && user[0].data.username !== "") {
         navigate('/clinics')
       }
-       else if ( user[0].data.username!== "" && user[0].data.username === list[i].data.username && user[0].data.password === list[i].data.password ) {
+      else if (user[0].data.username !== "" && user[0].data.username === list[i].data.username && user[0].data.password === list[i].data.password) {
         navigate('/patients')
       }
     }
@@ -51,39 +59,36 @@ const LoginPage = () => {
     event.preventDefault();
   };
 
-  // const onSubmit = () => {
-  //    dispatch(LoginD(val))
-  //    setVal({
-  //     username:'',
-  //     password:''
-  //    })
-  //    navigate('/')
-  // }
   const handleLogin = () => {
-     for (let i = 0; i < list.length; i++) {
+    for (let i = 0; i < list.length; i++) {
       if (val.username === "admin" && val.password === "Test@123") {
         navigate('/clinics')
-        break;
       }
-       else if (val.username === list[i].data.username && val.password === list[i].data.password) {
+      else if (val.username === list[i].data.username && val.password === list[i].data.password) {
         navigate('/patients')
-        break;
       }
-      else if(i === list.length-1 && ((val.username !== list[i].data.username && val.password !== list[i].data.password ) ||
-      (val.username === list[i].data.username && val.password !== list[i].data.password )||
-      (val.username !== list[i].data.username && val.password === list[i].data.password) ||
+      else if (val.username === "" && val.password === ""){
+        setOp(true)
+      } 
+      else if(val.username === "" && val.password !== ""){
+        setOpen(true);
+      }
+    
+      else if (i === list.length - 1 && ((val.username !== list[i].data.username && val.password !== list[i].data.password) ||
+        (val.username === list[i].data.username && val.password !== list[i].data.password) ||
+        (val.username !== list[i].data.username && val.password === list[i].data.password) ||
         (val.username !== "admin" && val.password !== "Test@123") ||
         (val.username === "admin" && val.password !== "Test@123") ||
-        (val.username !== "admin" && val.password === "Test@123")
-        ) ){
-       alert('so')
-    }
+        (val.username !== "admin" && val.password === "Test@123") 
+      )) {
+        setOpen(true);
+      }
     }
     dispatch(LoginD(val))
     setVal({
-      username:'',
-      password:''
-     })
+      username: '',
+      password: ''
+    })
   }
 
   return (
@@ -112,13 +117,13 @@ const LoginPage = () => {
                     // error={Boolean(errors.username)}
                     // helperText={errors.username?.message}
                     value={val.username}
-                    onChange={(e) => setVal({...val,username:e.target.value})}
+                    onChange={(e) => setVal({ ...val, username: e.target.value })}
                   />
                   <FormControl sx={{ marginTop: '24px', borderRadius: '8px' }} variant="outlined" color="success" name='password'
                     // {...register("password", { required: 'Password is required' })}
                     // error={Boolean(errors.password)}
-                    value={val.username}
-                    onChange={(e) => setVal({...val,password:e.target.value})}
+                    
+                    onChange={(e) => setVal({ ...val, password: e.target.value })}
                   >
                     <InputLabel htmlFor="outlined-adornment-password" name='password'>Password</InputLabel>
                     <OutlinedInput
@@ -126,7 +131,7 @@ const LoginPage = () => {
                       type={showPassword ? 'text' : 'password'}
                       name='password'
                       label="Password"
-                    
+                      value={val.password}
                       endAdornment={
                         <InputAdornment position="end">
                           <IconButton
@@ -149,6 +154,16 @@ const LoginPage = () => {
                   </Butt>
                 </Box>
               </form>
+              <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                  Invalid Username or Password!
+                </Alert>
+              </Snackbar>
+              <Snackbar open={op} autoHideDuration={3000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                  Please Enter UserName and Password!
+                </Alert>
+              </Snackbar>
             </Box>
           </Container>
         </Box>

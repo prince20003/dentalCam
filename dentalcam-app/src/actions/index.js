@@ -116,9 +116,28 @@ export const staffdele = (sid) =>{
     }
  }
 
+export const uploadimg = (result,pid)=>{
+   return{
+    type:"UPLOAD_IMG",
+    payload:{
+        iid : new Date().getTime().toString(),
+        image : result,
+        imid : pid,
+    }
+   }
+}
 
-
-
+export const imgdele = (elem,displayimg,pid) =>{
+    console.log(pid,"pid")
+   return{
+    type:'IMG_DELE',
+    payload:{
+        elem,
+        displayimg,
+        imdid : pid,
+    }
+   }
+}
 
 export const logout = () =>{
     return{
