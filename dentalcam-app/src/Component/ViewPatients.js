@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Dialog, DialogContent, FormControl, Grid, imageListItemBarClasses, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
+import { Box, Button, Dialog, DialogContent, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link, useLocation, useNavigate, } from 'react-router-dom';
 import ViewPatientStyle from '../Style/ViewPatientStyle';
@@ -8,21 +8,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import Divider from '@mui/material/Divider';
 import Butt from '../Style/Buttonstyle';
 import { useState } from 'react';
-import jspdf from 'jspdf'
 import jsPDF from 'jspdf';
-
+import Checkbox from '@mui/material/Checkbox';
 
 function ViewPatients() {
+    const arrimg = [];
     const location = useLocation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [op, setOp] = useState(false);
     const [item, setItem] = useState('');
-
+    const [isImageActive, setIsImageActive] = useState(false);
+    const [checked, setChecked] = React.useState(false);
+    const [photovar,setPhotovar] = useState([])
+    const listimg = useSelector((state) => state.dentalreducers.PatientDATA)
+      const clickEventHandler = () => {
+        setIsImageActive(true);
+    }
     const handleChange = (event) => {
         setItem(event.target.value);
     };
-    const listimg = useSelector((state) => state.dentalreducers.PatientDATA)
+    let checkedBoxes = document.querySelectorAll('input[name=chkBox]:checked');
     let displayimg = ""
     for (let u = 0; u < listimg.length; u++) {
         if (listimg[u].pid === location.state.pid) {
@@ -36,6 +42,60 @@ function ViewPatients() {
         })
         reder.readAsDataURL(e[0])
     }
+    // var photovar = [];
+    const handleCheckChange = (event) => {
+        setChecked(event.target.checked);
+        displayimg.map((el)=>{
+            if(el.imgid === event.target.defaultValue ){
+                console.log(el.imgid)
+                console.log(event.target.defaultValue);
+                setPhotovar([...photovar,el])
+            }
+        })
+    };
+    const handleexpo = () => {
+        var doc = new jsPDF();
+        // var doc = new jsPDF('landscape', 'px', 'a4', 'false');
+        console.log(photovar,"expo")
+        photovar.map((elem) => {
+            if (item === '1') {
+                return(
+                doc.addImage(elem.images, 'JPEG', 15, 35, 180, 150),
+                doc.addPage(),
+                doc.save('photo.pdf')
+                )
+            }
+            if (item === '2') {
+                return(
+                doc.addImage(elem.images, 'JPEG', 10, 55, 190, 100),
+                doc.addImage(elem.images, 'JPEG', 10, 160, 190, 100),
+                doc.addPage(),
+                doc.save('photo.pdf')
+                )
+            }
+            if (item === '3') {
+                return(
+                doc.addImage(elem.images, 'JPEG', 10, 55, 190, 100),
+                doc.addImage(elem.images, 'JPEG', 10, 160, 90, 100),
+                doc.addImage(elem.images, 'JPEG', 110, 160, 90, 100),
+                doc.addPage(),
+                doc.save('photo.pdf')
+                )
+            }
+            if (item === '4') {
+                return(
+                doc.addImage(elem.images, 'JPEG', 20, 55, 80, 100),
+                doc.addImage(elem.images, 'JPEG', 110, 55, 80, 100),
+                doc.addImage(elem.images, 'JPEG', 20, 160, 80, 100),
+                doc.addImage(elem.images, 'JPEG', 110, 160, 80, 100),
+                doc.addPage(),
+                doc.save('photo.pdf')
+                )
+            }
+          
+        })
+    }
+
     const handleBack = () => {
         navigate('/patients')
     }
@@ -46,24 +106,13 @@ function ViewPatients() {
     const imgdelete = (elem) => {
         dispatch(imgdele(elem, displayimg, location.state.pid))
     }
-    const handleOpen = () => {
-        setOp(true);
-    };
     const handleClickClose = () => {
         setOp(false);
     };
-    // displayimg.map((elem)=>console.log(elem,"ee"))
-    const handleexpo = () => {
-        var doc = new jsPDF('landscape', 'px', 'a4', 'false');
-        // console.log(displayimg[0].images,"photo")
-        for(let i=0;i<item.length;i++){
-            doc.addImage(displayimg[i].images, 'JPG', 65,20, 400)
-            doc.addPage()
-            doc.addImage(displayimg[i].images, 'JPG', 65,20, 400, 400)
-            doc.save('photo.pdf')
-        }
-        console.log("Click")
-    }
+
+
+   
+
     return (
         <>
             <ViewPatientStyle>
@@ -108,6 +157,7 @@ function ViewPatients() {
                                         </Box> :
                                         <Box className='imagesga'>
                                             {displayimg.map((elem) => {
+                                                //    console.log(elem.imgid,"elem.imgid")
                                                 return (
                                                     <>
                                                         <Box className='imageBox'>
@@ -120,6 +170,14 @@ function ViewPatients() {
                                                             <Button className='deleicon' >
                                                                 <svg onClick={() => imgdelete(elem)} className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" data-testid="DeleteIcon" style={{ color: 'black', fontSize: '20px' }}><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
                                                             </Button>
+                                                            {isImageActive ? <Checkbox
+                                                                onChange={handleCheckChange}
+                                                                name='chkBox'
+                                                                inputProps={{ 'aria-label': 'Checkbox demo' }}
+                                                                className='imageSelectionBox'
+                                                                value={elem.imgid}
+                                                            /> : ""}
+
                                                         </Box>
                                                     </>
                                                 )
@@ -143,7 +201,9 @@ function ViewPatients() {
                                                 Upload
                                                 <input hidden accept="image/*" type="file" onChange={(e) => setImgDetail1(e.target.files)} />
                                             </Button>
-                                            <Button className='uploadbtn' variant='contained' onClick={() => handleOpen()}>Export</Button>
+                                            <Button className='uploadbtn' variant='contained' onClick={() => clickEventHandler()}>Export</Button>
+                                            {isImageActive ? <Button className='uploadbtn' variant='contained' onClick={() => setOp(true)}>Next</Button> : ""}
+
                                         </Box>
                                 }
                             </Box>
@@ -153,29 +213,27 @@ function ViewPatients() {
                 <Dialog open={op} onClose={handleClickClose} sx={{ background: "linear-gradient(75deg, rgba(22, 28, 36, 0.48) 0%, rgba(22, 28, 36, 1) 100%)" }}>
                     <DialogContent>
                         <Grid container>
-                            <Typography component='h2'>Total Selected Images : {item}</Typography>
+                            <Typography component='h2'>Total Selected Images : {checkedBoxes.length}</Typography>
                         </Grid>
                     </DialogContent>
                     <DialogContent>
                         <Box className='modelForm'>
                             <Grid container>
-                                    <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-label">Select Per Page Image</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={item}
-                                            // label="Plan"
-                                            onChange={handleChange}
-                                        >
-                                            <MenuItem value="1">1</MenuItem>
-                                            <MenuItem value="2">2</MenuItem>
-                                            <MenuItem value="3">3</MenuItem>
-                                            <MenuItem value="4">4</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                </Grid>
-                            {/* </Grid> */}
+                                <FormControl fullWidth>
+                                    <InputLabel id="demo-simple-select-label">Select Per Page Image</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={item}
+                                        onChange={handleChange}
+                                    >
+                                        <MenuItem value="1">1</MenuItem>
+                                        <MenuItem value="2">2</MenuItem>
+                                        <MenuItem value="3">3</MenuItem>
+                                        <MenuItem value="4">4</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
                         </Box>
                     </DialogContent>
                     <DialogContent>

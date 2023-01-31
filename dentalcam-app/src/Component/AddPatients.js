@@ -2,12 +2,16 @@ import React, { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import Butt from '../Style/Buttonstyle';
 import { useNavigate } from 'react-router-dom';
 import Userstyle from '../Style/Userstyle';
 import { useDispatch } from 'react-redux';
 import { Addpatient } from '../actions';
-
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 function AddPatients() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -16,9 +20,29 @@ function AddPatients() {
         lastname : '',
         dob : '',
     })
-
+    const [open, setOpen] = useState(false);
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        setOpen(false);
+      };
     const handleBack = () => {
         navigate('/patients')
+    }
+ 
+    const handlePatient = () =>{
+       if(patientdata.firstname === "" || patientdata.lastname === "" || patientdata.dob === ""){
+          setOpen(true)
+       }
+       else{
+        dispatch(Addpatient(patientdata), 
+        setPatientdata({
+            firstname: "",
+            lastname: "",
+            dob: "",
+        }))
+    }
     }
 
     return (
@@ -45,15 +69,16 @@ function AddPatients() {
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Butt>
-                                                    <Button variant='contained' fullWidth className='loginb' onClick={() => dispatch(Addpatient(patientdata), setPatientdata({
-                                                        firstname: "",
-                                                        lastname: "",
-                                                        dob: "",
-                                                    })) }>Create</Button>
+                                                    <Button variant='contained' fullWidth className='loginb' onClick={() => handlePatient() }>Create</Button>
                                                 </Butt>
                                             </Grid>
                                         </Grid>
                                     </form>
+                                    <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                                        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                                            Please Fill All The Filed
+                                        </Alert>
+                                    </Snackbar>
                                 </Box>
                             </Box>
                         </Box>

@@ -123,6 +123,7 @@ export const uploadimg = (result,pid)=>{
         iid : new Date().getTime().toString(),
         image : result,
         imid : pid,
+    
     }
    }
 }

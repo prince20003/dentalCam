@@ -115,7 +115,24 @@ const ViewPatientStyle = styled.div`${{
     bottom: '0px',
     backgroundColor: 'red',
     minWidth: '20px',
-  }
+  },
+ '& .imageSelectionBox':{
+  display: 'block',
+  position: 'absolute',
+ },
+ '& .check':{
+  cursor: 'inherit',
+    position: 'absolute',
+    opacity: '0',
+    width: '100%',
+    height: '100%',
+    top: '0',
+    left: '0',
+    margin: '0',
+    padding: '0',
+    zIndex: '1',
+ }
+
 }}
   @media (max-width:1440px) and (min-width:1025px){
     .mainbo {

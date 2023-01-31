@@ -5,7 +5,6 @@ const initialData = {
     userinfo: [],
     PatientDATA: [],
     Staff: [],
-    photos: [],
 }
 
 const dentalreducers = (state = initialData, action) => {
@@ -198,7 +197,7 @@ const dentalreducers = (state = initialData, action) => {
                     // console.log(imid)
                     let ph = {
                         images: image,
-                        imgid: iid
+                        imgid: iid,
                     }
                     console.log(state.PatientDATA[p].pid)
                     // console.log(image)
@@ -222,7 +221,6 @@ const dentalreducers = (state = initialData, action) => {
                 const dele23 = displayimg.filter((ele) => ele.imgid !== elem.imgid);
                 console.log(imdid,"imdid");
                 console.log(state.PatientDATA[d].pid,"state.PatientDATA[d].pid")
-                // if (imdid === state.PatientDATA[d].pid) {
                 if (state.PatientDATA[d].pid === imdid) {
                     state.PatientDATA[d].photos = dele23
                 }
@@ -234,7 +232,6 @@ const dentalreducers = (state = initialData, action) => {
                 ]
             }
         }
-        //   break;
 
         default: return state;
     }

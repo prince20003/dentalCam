@@ -65,11 +65,23 @@ const Profilestyle = styled.div`${{
       width:380px;
       padding-left:20px;
      }
+     .update {
+      padding: 6px 40px 
+     }
+     .delete{
+      padding: 6px 40px 
+     }
   }
   @media (max-width:390px) and (min-width:360px){    
     .mprofile{
       width:300px;
       padding-left:40px;
+     }
+     .update {
+      padding: 6px 40px 
+     }
+     .delete{
+      padding: 6px 20px 
      }
   }
 `

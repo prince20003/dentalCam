@@ -8,7 +8,6 @@ import { Container } from '@mui/system';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Footer from './Footer'
-// import { useForm } from "react-hook-form";
 import AB from '../Style/Loginstyle';
 import Butt from '../Style/Buttonstyle';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,21 +36,19 @@ const LoginPage = () => {
     password: ''
   })
   const list = useSelector((state) => state.dentalreducers.list)
-  const user = useSelector((state) => state.dentalreducers.LoginData)
+  // const user = useSelector((state) => state.dentalreducers.LoginData)
+
   useEffect(() => {
+    let name = JSON.parse(localStorage.getItem("LoginDetail")) ? JSON.parse(localStorage.getItem("LoginDetail")) : ''
+    if (name.username === "admin") {
+      navigate("/clinics")
+    }
     for (let i = 0; i < list.length; i++) {
-      if (user[0].data.username === "admin" && user[0].data.username !== "") {
-        navigate('/clinics')
-      }
-      else if (user[0].data.username !== "" && user[0].data.username === list[i].data.username && user[0].data.password === list[i].data.password) {
+      if (name.username === list[i].data.username && name.password === list[i].data.password) {
         navigate('/patients')
       }
     }
-  })
-
-  // const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'all', });
-  // const onSubmit = (data) => console.log(data);
-
+    })
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -59,36 +56,71 @@ const LoginPage = () => {
     event.preventDefault();
   };
 
+  // const handleLogin = () => {
+  //   for (let i = 0; i < list.length; i++) {
+  //     if (val.username === "admin" && val.password === "Test@123") {
+  //       navigate('/clinics')
+  //     }
+  //     else if (val.username === list[i].data.username && val.password === list[i].data.password) {
+  //       navigate('/patients')
+  //     }
+  //     else if (val.username === "" && val.password === ""){
+  //       setOp(true)
+  //     } 
+  //     else if(val.username === "" && val.password !== ""){
+  //       setOpen(true);
+  //     }
+
+  //     else if (i === list.length - 1 && ((val.username !== list[i].data.username && val.password !== list[i].data.password) ||
+  //       (val.username === list[i].data.username && val.password !== list[i].data.password) ||
+  //       (val.username !== list[i].data.username && val.password === list[i].data.password) ||
+  //       (val.username !== "admin" && val.password !== "Test@123") ||
+  //       (val.username === "admin" && val.password !== "Test@123") ||
+  //       (val.username !== "admin" && val.password === "Test@123") 
+  //     )) {
+  //       setOpen(true);
+  //     }
+  //   }
+  //   dispatch(LoginD(val))
+  //   setVal({
+  //     username: '',
+  //     password: ''
+  //   })
+  // }
+
   const handleLogin = () => {
+    const lDetail = JSON.stringify(val);
+    localStorage.setItem("LoginDetail", lDetail);
+    if (val.username === "admin" && val.password === "Test@123") {
+      navigate('/clinics')
+      window.location.reload();
+    }
+    else if (val.username === "" || val.password === "") {
+      setOp(true)
+    }
     for (let i = 0; i < list.length; i++) {
       if (val.username === "admin" && val.password === "Test@123") {
         navigate('/clinics')
       }
-      else if (val.username === list[i].data.username && val.password === list[i].data.password) {
+      if (val.username === list[i].data.username && val.password === list[i].data.password) {
         navigate('/patients')
+        window.location.reload();
       }
-      else if (val.username === "" && val.password === ""){
+      else if (val.username === "" || val.password === "") {
         setOp(true)
-      } 
-      else if(val.username === "" && val.password !== ""){
-        setOpen(true);
       }
-    
       else if (i === list.length - 1 && ((val.username !== list[i].data.username && val.password !== list[i].data.password) ||
         (val.username === list[i].data.username && val.password !== list[i].data.password) ||
         (val.username !== list[i].data.username && val.password === list[i].data.password) ||
-        (val.username !== "admin" && val.password !== "Test@123") ||
+        (val.username !== "admin" && val.password !== "Test@123")
         (val.username === "admin" && val.password !== "Test@123") ||
-        (val.username !== "admin" && val.password === "Test@123") 
+        (val.username !== "admin" && val.password === "Test@123")
       )) {
         setOpen(true);
       }
+
     }
     dispatch(LoginD(val))
-    setVal({
-      username: '',
-      password: ''
-    })
   }
 
   return (
@@ -109,20 +141,13 @@ const LoginPage = () => {
               <Box className='de'>
                 <Typography variant='h4' className='sign' >Sign in to DentalCam</Typography>
               </Box>
-              {/* <form autoComplete='off' onSubmit={handleSubmit(onSubmit)} > */}
               <form autoComplete='off' >
                 <Box className='formdata'>
                   <TextField id="outlined-basic" sx={{ borderRadius: '8px' }} label="Username" variant="outlined" color="success" name='username'
-                    // {...register("username", { required: 'User Name is required' })}
-                    // error={Boolean(errors.username)}
-                    // helperText={errors.username?.message}
                     value={val.username}
                     onChange={(e) => setVal({ ...val, username: e.target.value })}
                   />
                   <FormControl sx={{ marginTop: '24px', borderRadius: '8px' }} variant="outlined" color="success" name='password'
-                    // {...register("password", { required: 'Password is required' })}
-                    // error={Boolean(errors.password)}
-                    
                     onChange={(e) => setVal({ ...val, password: e.target.value })}
                   >
                     <InputLabel htmlFor="outlined-adornment-password" name='password'>Password</InputLabel>
@@ -146,7 +171,6 @@ const LoginPage = () => {
                         </InputAdornment>
                       }
                     />
-                    {/* <FormHelperText>{errors.password?.message}</FormHelperText> */}
                   </FormControl>
                   <FormControlLabel className='check' control={<Checkbox defaultChecked sx={{ '&.Mui-checked': { color: '#0B3379' }, paddingLeft: '0px' }} />} label="Remember me" />
                   <Butt>

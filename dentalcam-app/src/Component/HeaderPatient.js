@@ -14,7 +14,7 @@ import { Button } from '@mui/material';
 import Country from './Country';
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import dentalreducers from '../reducers/dentalreducers'
+// import dentalreducers from '../reducers/dentalreducers'
 import { logout } from '../actions';
 
 function HeaderPatient() {
@@ -32,8 +32,9 @@ function HeaderPatient() {
  
     const handleLogout = () =>{
         console.log("click")
+        localStorage.removeItem("LoginDetail")
         dispatch(logout())
-        navigate('/login')
+        navigate('/')
     }
 
 

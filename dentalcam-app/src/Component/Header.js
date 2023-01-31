@@ -13,7 +13,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { Button } from '@mui/material';
 import Country from './Country';
 import { NavLink, useNavigate } from 'react-router-dom'
-import dentalreducers from '../reducers/dentalreducers';
+// import dentalreducers from '../reducers/dentalreducers';
 import { logout } from '../actions';
 import { useDispatch } from 'react-redux';
 
@@ -30,8 +30,9 @@ function Header() {
     };
     const handleLogout = () =>{
         console.log("click")
+        localStorage.removeItem("LoginDetail")
         dispatch(logout())
-        navigate('/login')    
+        navigate('/')    
     }
 
 
