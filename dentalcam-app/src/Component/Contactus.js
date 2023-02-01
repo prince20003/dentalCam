@@ -18,9 +18,7 @@ function Contactus() {
             setLoading(false)
         }, 1000);
     }, [])
-
-
-
+    
     const handleBack = () => {
         navigate('/clinics')
     }

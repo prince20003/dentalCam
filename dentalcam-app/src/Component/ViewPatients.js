@@ -12,17 +12,19 @@ import jsPDF from 'jspdf';
 import Checkbox from '@mui/material/Checkbox';
 
 function ViewPatients() {
-    const arrimg = [];
+
     const location = useLocation();
+    console.log(location, "location")
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [op, setOp] = useState(false);
     const [item, setItem] = useState('');
+    const [currentDate, setCurrentDate] = useState("")
     const [isImageActive, setIsImageActive] = useState(false);
     const [checked, setChecked] = React.useState(false);
-    const [photovar,setPhotovar] = useState([])
+    const [photovar, setPhotovar] = useState([])
     const listimg = useSelector((state) => state.dentalreducers.PatientDATA)
-      const clickEventHandler = () => {
+    const clickEventHandler = () => {
         setIsImageActive(true);
     }
     const handleChange = (event) => {
@@ -42,59 +44,162 @@ function ViewPatients() {
         })
         reder.readAsDataURL(e[0])
     }
-    // var photovar = [];
     const handleCheckChange = (event) => {
         setChecked(event.target.checked);
-        displayimg.map((el)=>{
-            if(el.imgid === event.target.defaultValue ){
-                console.log(el.imgid)
-                console.log(event.target.defaultValue);
-                setPhotovar([...photovar,el])
+        displayimg.map((el) => {
+            if (el.imgid === event.target.defaultValue) {
+                setPhotovar([...photovar, el])
             }
         })
     };
+
+
+
     const handleexpo = () => {
+        const ImageSet = {
+            1: [{ x: 15, y: 35, w: 180, z: 150 }],
+            2: [
+                { x: 10, y: 55, w: 190, z: 100 },
+                { x: 10, y: 160, w: 190, z: 100 }
+            ],
+            3: [
+                { x: 10, y: 55, w: 190, z: 100 },
+                { x: 10, y: 160, w: 90, z: 100 },
+                { x: 110, y: 160, w: 90, z: 100 }
+            ],
+            4: [
+                { x: 20, y: 55, w: 80, z: 100 },
+                { x: 110, y: 55, w: 80, z: 100 },
+                { x: 20, y: 160, w: 80, z: 100 },
+                { x: 110, y: 160, w: 80, z: 100 }
+            ]
+        };
         var doc = new jsPDF();
-        // var doc = new jsPDF('landscape', 'px', 'a4', 'false');
-        console.log(photovar,"expo")
-        photovar.map((elem) => {
-            if (item === '1') {
-                return(
-                doc.addImage(elem.images, 'JPEG', 15, 35, 180, 150),
-                doc.addPage(),
-                doc.save('photo.pdf')
-                )
+
+        const noOfPages = Math.ceil(photovar.length / ImageSet[item].length)
+        console.log(noOfPages, "noOfPage")
+        let j = 0;
+        for (let ph = 1; ph <= noOfPages; ph += 1) {
+            doc.setFontSize(10);
+            doc.text(10, 10, `${('FirstName')}:${location.state.patientDAta.firstname}`)
+            doc.text(10, 15, `${('LastName')}:${location.state.patientDAta.lastname}`)
+            doc.text(10,20, `${('Created Date')}:${currentDate}`)
+            doc.setLineWidth(0.5);
+            doc.line(10,30,200,30);
+            for (let i = 0; i < ImageSet[item].length; i += 1) {
+                if (j in photovar) {
+                    doc.addImage(
+                        photovar[j].images,
+                        'JPEG',
+                        ImageSet[item][i].x,
+                        ImageSet[item][i].y,
+                        ImageSet[item][i].w,
+                        ImageSet[item][i].z,
+                    );
+                    j += 1;
+                }
             }
-            if (item === '2') {
-                return(
-                doc.addImage(elem.images, 'JPEG', 10, 55, 190, 100),
-                doc.addImage(elem.images, 'JPEG', 10, 160, 190, 100),
-                doc.addPage(),
-                doc.save('photo.pdf')
-                )
+            if (ph !== noOfPages) {
+                doc.addPage();
             }
-            if (item === '3') {
-                return(
-                doc.addImage(elem.images, 'JPEG', 10, 55, 190, 100),
-                doc.addImage(elem.images, 'JPEG', 10, 160, 90, 100),
-                doc.addImage(elem.images, 'JPEG', 110, 160, 90, 100),
-                doc.addPage(),
-                doc.save('photo.pdf')
-                )
-            }
-            if (item === '4') {
-                return(
-                doc.addImage(elem.images, 'JPEG', 20, 55, 80, 100),
-                doc.addImage(elem.images, 'JPEG', 110, 55, 80, 100),
-                doc.addImage(elem.images, 'JPEG', 20, 160, 80, 100),
-                doc.addImage(elem.images, 'JPEG', 110, 160, 80, 100),
-                doc.addPage(),
-                doc.save('photo.pdf')
-                )
-            }
-          
-        })
+        }
+        doc.save('photo.pdf')
     }
+    // var doc = new jsPDF('landscape', 'px', 'a4', 'false');
+    // console.log(photovar, "expo")
+    // console.log(photovar.length,"lenght")
+
+    // photovar.map((elem) => {
+    //     if (item === '1') {
+    //         return(
+    //         doc.addImage(elem.images, 'JPEG', 15, 35, 180, 150),
+    //         doc.addPage(),
+    //         doc.save('photo.pdf')
+    //         )
+    //     }
+    // })
+
+    // for (let p = 0; p < photovar.length; p++) {
+    //     console.log(photovar[p],"pimg")
+    // if (item === '2') {
+    //         // return (
+    //         //     // doc.addImage(photovar[p].images, 'JPEG', 10, 55, 190, 100),
+    //         //     // doc.addImage(photovar[p + 1].images, 'JPEG', 10, 160, 190, 100),
+    //         //     // doc.addPage(),
+    //         //     // doc.save('photo.pdf')
+    //         // )
+    //     }
+    // }
+
+    // if (item === '3') {
+    //     for (let p = 0; p < photovar.length; p++) {
+    //         return (
+    //             doc.addImage(photovar[p].images, 'JPEG', 10, 55, 190, 100),
+    //             doc.addImage(photovar[p].images, 'JPEG', 10, 160, 90, 100),
+    //             doc.addImage(photovar[p].images, 'JPEG', 110, 160, 90, 100),
+    //             doc.addPage(),
+    //             doc.save('photo.pdf')
+    //             )
+    //         }
+    // }
+    // if (item === '4') {
+    //     for (let p = 0; p < photovar.length; p++) {
+    //         return (
+    //             doc.addImage(photovar[p].images, 'JPEG', 20, 55, 80, 100),
+    //             doc.addImage(photovar[p].images, 'JPEG', 110, 55, 80, 100),
+    //             doc.addImage(photovar[p].images, 'JPEG', 20, 160, 80, 100),
+    //             doc.addImage(photovar[p].images, 'JPEG', 110, 160, 80, 100),
+    //             doc.addPage(),
+    //             doc.save('photo.pdf')
+    //         )
+    //     }
+    // }
+
+
+
+
+    //     photovar.map((elem, index) => {
+    //         //     console.log(elem,"elem",index);
+    //         //     console.log( 'JPEG',  ImageSet[1][index=== 0 || 1 ? 1 : index].x, ImageSet[1][index=== 0 || 1 ? 1 : index].y, ImageSet[1][index=== 0 || 1 ? 1 : index].w, ImageSet[1][index=== 0 || 1 ? 1 : index].z)
+
+    //         //    doc.addImage(photovar[index].images,'JPEG',ImageSet[1][index=== 0 || 1 ? 1 : index].x, ImageSet[1][index=== 0 || 1 ? 1 : index].y, ImageSet[1][index=== 0 || 1 ? 1 : index].w, ImageSet[1][index=== 0 || 1 ? 1 : index].z)
+    //         //    doc.save('photo.pdf')
+
+    //         if (item === '1') {
+    //             return (
+    //                 doc.addImage(elem.images, 'JPEG', ImageSet[0].x, ImageSet[0].y, ImageSet[0].w, ImageSet[0].z),
+    //                 doc.addPage(),
+    //                 doc.save('photo.pdf')
+    //             )
+    //         }
+    //         if (item === '2') {
+    //             return (
+    //                 doc.addImage(elem.images, 'JPEG', ),
+    //                 doc.addPage(),
+    //                 doc.save('photo.pdf')
+    //                 )
+    //         }
+    //         if (item === '3') {
+    //         return (
+    //             doc.addImage(elem.images, 'JPEG', 10, 55, 190, 100),
+    //             doc.addImage(elem.images, 'JPEG', 10, 160, 90, 100),
+    //             doc.addImage(elem.images, 'JPEG', 110, 160, 90, 100),
+    //             doc.addPage(),
+    //             doc.save('photo.pdf')
+    //         )
+    //     }
+    //     if (item === '4') {
+    //         return (
+    //             doc.addImage(elem.images, 'JPEG', 20, 55, 80, 100),
+    //             doc.addImage(elem.images, 'JPEG', 110, 55, 80, 100),
+    //             doc.addImage(elem.images, 'JPEG', 20, 160, 80, 100),
+    //             doc.addImage(elem.images, 'JPEG', 110, 160, 80, 100),
+    //             doc.addPage(),
+    //             doc.save('photo.pdf')
+    //         )
+    //     }
+
+    // })
 
     const handleBack = () => {
         navigate('/patients')
@@ -111,7 +216,7 @@ function ViewPatients() {
     };
 
 
-   
+
 
     return (
         <>
@@ -157,7 +262,6 @@ function ViewPatients() {
                                         </Box> :
                                         <Box className='imagesga'>
                                             {displayimg.map((elem) => {
-                                                //    console.log(elem.imgid,"elem.imgid")
                                                 return (
                                                     <>
                                                         <Box className='imageBox'>
@@ -210,7 +314,7 @@ function ViewPatients() {
                         </Box>
                     </>
                 </Box>
-                <Dialog open={op} onClose={handleClickClose} sx={{ background: "linear-gradient(75deg, rgba(22, 28, 36, 0.48) 0%, rgba(22, 28, 36, 1) 100%)" }}>
+                <Dialog open={op} onClose={handleClickClose} sx={{ background: "linear-gradient(75deg, rgba(22, 28, 36, 0.48) 0%, rgba(22, 28, 36, 1) 100%)"}}>
                     <DialogContent>
                         <Grid container>
                             <Typography component='h2'>Total Selected Images : {checkedBoxes.length}</Typography>
@@ -235,6 +339,9 @@ function ViewPatients() {
                                 </FormControl>
                             </Grid>
                         </Box>
+                    </DialogContent>
+                    <DialogContent>
+                        <TextField type='date' fullWidth value={currentDate} onChange={(e)=>setCurrentDate(e.target.value)}/>
                     </DialogContent>
                     <DialogContent>
                         <TextField

@@ -24,12 +24,14 @@ function Adduser() {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const [open, setOpen] = React.useState(false);
+    const [op, setOp] = React.useState(false);
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
-          return;
+            return;
         }
         setOpen(false);
-      };
+        setOp(false);
+    };
     const [userData, setUserData] = useState({
         clinicname: "",
         email: "",
@@ -47,14 +49,18 @@ function Adduser() {
     const handleChange = (event) => {
         setUserData({ ...userData, plan: event.target.value });
     };
-
+    
     const handleBack = () => {
         navigate('/clinics')
     }
-
+    
+    var regEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;
     const handlecreate = () =>{
       if(userData.clinicname === "" || userData.email === "" || userData.password === "" || userData.date === "" || userData.plan === "" ){
         setOpen(true)
+      }
+      else if(!regEmail.test(userData.email)){
+        setOp(true)
       }
     else{
         dispatch(addUser(userData),
@@ -144,6 +150,11 @@ function Adduser() {
                                     <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
                                         <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
                                             Please Fill All The Filed
+                                        </Alert>
+                                    </Snackbar>
+                                    <Snackbar open={op} autoHideDuration={3000} onClose={handleClose}>
+                                        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                                            Please Enter Correct Email!!
                                         </Alert>
                                     </Snackbar>
                                 </Box>

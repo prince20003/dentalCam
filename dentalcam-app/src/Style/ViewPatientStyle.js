@@ -119,6 +119,7 @@ const ViewPatientStyle = styled.div`${{
  '& .imageSelectionBox':{
   display: 'block',
   position: 'absolute',
+  color:'blue'
  },
  '& .check':{
   cursor: 'inherit',

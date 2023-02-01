@@ -55,39 +55,7 @@ const LoginPage = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
-  // const handleLogin = () => {
-  //   for (let i = 0; i < list.length; i++) {
-  //     if (val.username === "admin" && val.password === "Test@123") {
-  //       navigate('/clinics')
-  //     }
-  //     else if (val.username === list[i].data.username && val.password === list[i].data.password) {
-  //       navigate('/patients')
-  //     }
-  //     else if (val.username === "" && val.password === ""){
-  //       setOp(true)
-  //     } 
-  //     else if(val.username === "" && val.password !== ""){
-  //       setOpen(true);
-  //     }
-
-  //     else if (i === list.length - 1 && ((val.username !== list[i].data.username && val.password !== list[i].data.password) ||
-  //       (val.username === list[i].data.username && val.password !== list[i].data.password) ||
-  //       (val.username !== list[i].data.username && val.password === list[i].data.password) ||
-  //       (val.username !== "admin" && val.password !== "Test@123") ||
-  //       (val.username === "admin" && val.password !== "Test@123") ||
-  //       (val.username !== "admin" && val.password === "Test@123") 
-  //     )) {
-  //       setOpen(true);
-  //     }
-  //   }
-  //   dispatch(LoginD(val))
-  //   setVal({
-  //     username: '',
-  //     password: ''
-  //   })
-  // }
-
+  
   const handleLogin = () => {
     const lDetail = JSON.stringify(val);
     localStorage.setItem("LoginDetail", lDetail);

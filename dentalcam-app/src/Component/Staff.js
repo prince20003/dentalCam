@@ -63,7 +63,7 @@ function Staff() {
                   <TableRow>
                     <TableCell>First Name</TableCell>
                     <TableCell>Last Name</TableCell>
-                    <TableCell>Active</TableCell>
+                    {/* <TableCell>Active</TableCell> */}
                     <TableCell>Created At</TableCell>
                     <TableCell>Action</TableCell>
                   </TableRow>
@@ -83,7 +83,7 @@ function Staff() {
                     <TableRow key={elem.staffDATA.firstname}>
                       <TableCell>{elem.staffDATA.firstname}</TableCell>
                       <TableCell>{elem.staffDATA.lastname}</TableCell>
-                      <TableCell>{}</TableCell>
+                      {/* <TableCell>{}</TableCell> */}
                       <TableCell>{created}</TableCell>
                       <TableCell>{
                             <>

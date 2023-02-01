@@ -25,13 +25,12 @@ import UpdateStaff from './Component/UpdteStaff';
 
 
 const App = () => {
-  // const logindetail = useSelector((state) => state.dentalreducers.LoginData) 
-  let de = JSON.parse(localStorage.getItem("LoginDetail"))?JSON.parse(localStorage.getItem("LoginDetail")):''
-  
-  if(de.username === "admin" && de.password === "Test@123"){
+  let de = JSON.parse(localStorage.getItem("LoginDetail")) ? JSON.parse(localStorage.getItem("LoginDetail")) : ''
+
+  if (de.username === "admin" && de.password === "Test@123") {
     console.log(de.username === "admin" && de.password === "Test@123");
   }
-  else{
+  else {
     console.log("false")
   }
 
@@ -39,35 +38,8 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<LoginPage/>}/>
-        { de.username === "admin" && de.password === "Test@123" ? 
-            <Route path='/' element={<LeftSlidbar />} >
-            <Route path='/clinics' element={<Data />} />
-            <Route path='/clinics/create' element={<Adduser />} />
-            <Route path='/clinics/view' element={<ViewUser />} />
-            <Route path='/clinics/update' element={<UpdateUser />} />
-            <Route path='/problem' element={<Problem />} />
-            <Route path='/contactus' element={<Contactus />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/*' element={<PageNotFound />} />
-          </Route>
-          :
-          <Route path='/' element={<PLeftslidbar />} >
-            <Route path='/patients' element={<PatientsData />} />
-            <Route path='/patients/create' element={<AddPatients />} />
-            <Route path='/patients/update' element={<UpdatePatient />} />
-            <Route path='/patients/view' element={<ViewPatients />} />
-            <Route path='/staffs' element={<Staff />} />
-            <Route path='/staffs/create' element={<AddStaff />} />
-            <Route path='/staffs/update' element={<UpdateStaff />} />
-            <Route path='/contactus' element={<Contactus />} />
-            <Route path='/profile' element={<ProfilePatients />} />
-            <Route path='/*' element={<PageNotFound />} />
-          </Route>  
-        }
-
-
-          {/* {logindetail[0].data.username === "admin" && logindetail[0].data.password === "Test@123" ?
+          <Route path='/' element={<LoginPage />} />
+          {de.username === "admin" && de.password === "Test@123" ?
             <Route path='/' element={<LeftSlidbar />} >
               <Route path='/clinics' element={<Data />} />
               <Route path='/clinics/create' element={<Adduser />} />
@@ -91,7 +63,7 @@ const App = () => {
               <Route path='/profile' element={<ProfilePatients />} />
               <Route path='/*' element={<PageNotFound />} />
             </Route>
-          } */}
+          }
 
           <Route path='/contact-us' element={<Contact />} />
           <Route path='/TermsAndConditions' element={<Term />} />

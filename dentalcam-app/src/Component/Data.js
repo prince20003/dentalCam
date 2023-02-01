@@ -65,7 +65,7 @@ function Data() {
                     <TableCell>Email</TableCell>
                     <TableCell>Plan</TableCell>
                     <TableCell>Expiry Date</TableCell>
-                    <TableCell>Active</TableCell>
+                    {/* <TableCell>Active</TableCell> */}
                     <TableCell>Action</TableCell>
                   </TableRow>
                 </TableHead>
@@ -82,24 +82,22 @@ function Data() {
                       return val
                     }
                   }).map((elem) => {
-                    const ab = elem.data.date
-                    // console.log(ab)
-                    const datet = new Date();
-                    const currenDate = datet.getFullYear() + '-' + (datet.getMonth() + 1) + '-' + datet.getDate();
-                    // console.log(currenDate)
-                    if (ab === currenDate) {
-                      console.log("yes")
-                    }
+                    // const ab = elem.data.date
+                    // // console.log(ab)
+                    // const datet = new Date();
+                    // const currenDate = datet.getFullYear() + '-' + (datet.getMonth() + 1) + '-' + datet.getDate();
+                    // // console.log(currenDate)
+                    // if (ab === currenDate) {
+                    //   console.log("yes")
+                    // }
                     return (
                       <TableBody sx={{ cursor: 'pointer' }}>
                         <TableRow key={elem.id}>
-                          {/* <Link to='/clinics/view' style={{textDecoration:'none',margin:'0px',padding:'0px'}} state={elem.data}> */}
                           <TableCell>{elem.data.clinicname}</TableCell>
                           <TableCell >{elem.data.email}</TableCell>
                           <TableCell>{elem.data.plan}</TableCell>
                           <TableCell>{elem.data.date}</TableCell>
-                          <TableCell>{ }</TableCell>
-                          {/* </Link> */}
+                          {/* <TableCell>{ }</TableCell> */}
                           <TableCell>{
                             <>
                               <Link to='/clinics/view' state={elem}> <svg className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root iconch" focusable="false" viewBox="0 0 24 24" aria-hidden="true" data-testid="VisibilityIcon"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg></Link>
