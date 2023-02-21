@@ -26,36 +26,38 @@ import Patientsview from './component/View/Patientsview';
 import Updatestaff from './component/Update/Updatestaff';
 
 function App() {
-  // const [loading, setLoading] = React.useState(false);
-  const ab = useSelector((state) => state.Dental.logindata)
-  const info = useSelector((state) => state.Dental.info)
-  // React.useEffect(() => {
-  //   setLoading(true)
-  //   setTimeout(() => {
-  //     setLoading(false)
-  //   }, 2000);
-  // }, [])
+ 
+  let de = JSON.parse(localStorage.getItem("logindata")) ? JSON.parse(localStorage.getItem("logindata")) : ''
+
+  if (de.username === "admin" && de.password === "Test@123") {
+    console.log(de.username === "admin" && de.password === "Test@123");
+  }
+  else {
+    console.log("false")
+  }
   return (
 
 
     <BrowserRouter>
 
       <Routes>
-      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Login />} />
 
+      {de.username === "admin" && de.password === "Test@123" ?
 
-        {ab[0].data.username === 'admin' && ab[0].data.password === "Test@123" ?
           <Route path='/' element={<Main />} >
+            <Route path="/clinic" element={<Clinic />} />
             <Route path="/clinic/create" element={<Create />} />
             <Route path="/clinic" element={<Clinic />} />
             <Route path="/problem" element={<Problem />} />
             <Route path="/contactus" element={<Contact />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/*" element={<Error />} />
             <Route path="/view" element={<View />} />
             <Route path="/Update" element={<Update />} />
+            <Route path="/*" element={<Error />} />
           </Route>
           :<Route path='/' element={<Main2 />} >
+          <Route path="/patients" element={<Patients/>} />
           <Route path="/patients/create" element={<PatientsCreate />} />
           <Route path="/staff/create" element={<StaffCreate />} />
           <Route path="/profile" element={<Profilepatints />} />
@@ -64,13 +66,13 @@ function App() {
           <Route path="/staff" element={<Staff />} />
           <Route path="/Updatestaff" element={<Updatestaff />} />
           <Route path="/contactus" element={<Contact />} />
-          <Route path="/*" element={<Error />} />
           <Route path="/patientsview" element={<Patientsview />} />
+          <Route path="/*" element={<Error />} />
 
         </Route> 
-        }
+        
 
-
+  }
 
         <Route path="/Contact" element={<Cont />} />
         <Route path="/TermsAndCondition" element={<TermsAndCondiction />} />

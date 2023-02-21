@@ -31,7 +31,7 @@ function MenubarLogout() {
       console.log("lll");
   
        dispatch(logout())
-       navigate('/login')
+       navigate('/')
   }
   return (
     <>

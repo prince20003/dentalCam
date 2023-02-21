@@ -257,25 +257,22 @@ const Dental = (state = initialState, action) => {
         }
             break;
         case "IMGDELE": {
-            const { elem,imgdata } = action.payload
-            console.log(elem);
+            const { elem,imgdata,ppid } = action.payload
             for (let i = 0; i < state.patientsdata.length; i++) {
-console.log(imgdata,"L");
             const dele23 = imgdata.filter((ele) => ele.imgid != elem.imgid);
-            console.log(state.patientsdata[1]);
-                        state.patientsdata[i].photos=dele23
-
+                        if (state.patientsdata[i].pid === ppid) {
+                            state.patientsdata[i].photos = dele23
+                        }}
             return {
                 ...state,
                 patientsdata: [
                     ...state.patientsdata,
 
                 ]            }
-        }   
+          
        
         
     }
-        break;
         
         default: return state
 

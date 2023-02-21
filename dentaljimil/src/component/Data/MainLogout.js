@@ -33,7 +33,7 @@ function MainLogout() {
 const logou =()=>{
 
      dispatch(logout())
-     navigate('/login')
+     navigate('/')
 }
     return (
         <>

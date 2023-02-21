@@ -18,27 +18,28 @@ function Login() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [open, setOpen] = React.useState(false);
+  const [op, setOp] = React.useState(false);
 
   const { register, handleSubmit, formState: { errors } } = useForm({ mode: "all", });
   const list = useSelector((state) => state.Dental.list)
-  const lo = useSelector((state) => state.Dental.logindata)    
-  useEffect(()=>{
-   
-    
+  const lo = useSelector((state) => state.Dental.logindata)
+  useEffect(() => {
+
+
     for (let i = 0; i < list.length; i++) {
 
-      if (lo[0].data.username ==='admin' && lo[0].data.username !== "" ) {
+      if (lo[0].data.username === 'admin' && lo[0].data.username !== "") {
         navigate('/clinic')
         console.log("hhh");
       }
-       else if (lo[0].data.username !=='' && lo[0].data.username === list[i].data.Username && lo[0].data.password === list[i].data.password) {
+      else if (lo[0].data.username !== '' && lo[0].data.username === list[i].data.Username && lo[0].data.password === list[i].data.password) {
         navigate('/patients')
       }
-  
-      
+
+
     }
-    
-   })
+
+  })
   const [logdata, setLogdata] = useState({
     username: '',
     password: ''
@@ -52,14 +53,23 @@ function Login() {
     event.preventDefault();
   };
   const onSubmit = () => {
-    
 
+    const al = JSON.stringify(logdata)
+    localStorage.setItem("logindata", al)
+
+    if (logdata.username === "admin" && logdata.password === "Test@123") {
+      navigate('/clinic')
+      window.location.reload();
+
+
+    }
+    else if (logdata.username === "" || logdata.password === "") {
+      setOp(true)
+    }
     for (let i = 0; i < list.length; i++) {
 
-      console.log(list);
       if (logdata.username === "admin" && logdata.password === "Test@123") {
         navigate('/clinic')
-        console.log("hhh");
         break;
 
       }
@@ -78,7 +88,7 @@ function Login() {
             console.log("ll");
             setOpen(true);
           }
-      
+
     }
     dispatch(log(logdata), setLogdata({
       username: '',
@@ -86,7 +96,7 @@ function Login() {
     }))
 
   }
- 
+
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -94,6 +104,7 @@ function Login() {
     }
 
     setOpen(false);
+    setOp (false);
   };
   return (
     <Logmain>
@@ -110,11 +121,11 @@ function Login() {
             <Typography variant='h5' sx={{ fontFamily: 'Public Sans,sans-serif', fontWeight: '700', lineHeight: '1.5' }}><b>Sign in to DentalCam</b></Typography>
             <form className='form' >
               <TextField sx={{ marginTop: '0px', width: '480px', borderRadius: 10 }} id="outlined-basic" label="Username" variant="outlined" name='username'
-                
+
                 onChange={(e) => setLogdata({ ...logdata, username: e.target.value })}
                 value={logdata.username} />
               <FormControl sx={{ marginTop: '24px', width: '480px' }} variant="outlined"
-                
+
                 onChange={(e) => setLogdata({ ...logdata, password: e.target.value })}
               >
 
@@ -149,14 +160,20 @@ function Login() {
 
               <FormControlLabel sx={{ marginTop: '16px' }} control={<Checkbox defaultChecked sx={{ '&.Mui-checked': { color: '#0B3379' }, }} />} label="Remember me" />
               <Button className='log' type="Submit" variant="contained" onClick={handleSubmit(onSubmit)}><b>Login</b></Button>
-             
+
             </form>
-             <Snackbar open={open} autoHideDuration={3000} onClose={handleClose} sx=
-             {{marginBottom:'80px'}}>
-                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-                  Invalid Username or Password!
-                </Alert>
-              </Snackbar>
+            <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}
+              sx={{ marginBottom: '80px' }}>
+              <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                Invalid Username or Password!
+              </Alert>
+            </Snackbar>
+
+            <Snackbar open={op} autoHideDuration={3000} onClose={handleClose} sx={{ marginBottom: '80px' }}>
+              <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                Please Enter UserName and Password!
+              </Alert>
+            </Snackbar>
           </Box>
         </Container>
       </Box>

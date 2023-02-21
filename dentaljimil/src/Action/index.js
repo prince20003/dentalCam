@@ -131,12 +131,13 @@ export const uplodeimg =(result,pid)=>{
            }
     }
 }
-export const imgdele =(elem,imgdata)=>{
+export const imgdele =(elem,imgdata,pid)=>{
     return{
            type:'IMGDELE',
            payload:{
                 elem,
                 imgdata,
+                ppid : pid,
            }
     }
 }
